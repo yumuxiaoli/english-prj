@@ -1,0 +1,89 @@
+{
+  "hash": "79208022",
+  "browserHash": "2dd30cd7",
+  "optimized": {
+    "@ckeditor/ckeditor5-vue": {
+      "src": "../../@ckeditor/ckeditor5-vue/dist/ckeditor.js",
+      "file": "@ckeditor_ckeditor5-vue.js",
+      "fileHash": "393ffc90",
+      "needsInterop": true
+    },
+    "@element-plus/icons-vue": {
+      "src": "../../@element-plus/icons-vue/dist/index.js",
+      "file": "@element-plus_icons-vue.js",
+      "fileHash": "6b977383",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../axios/index.js",
+      "file": "axios.js",
+      "fileHash": "d0f7a869",
+      "needsInterop": true
+    },
+    "dayjs": {
+      "src": "../../dayjs/dayjs.min.js",
+      "file": "dayjs.js",
+      "fileHash": "204e6c54",
+      "needsInterop": true
+    },
+    "echarts": {
+      "src": "../../echarts/index.js",
+      "file": "echarts.js",
+      "fileHash": "90483210",
+      "needsInterop": false
+    },
+    "element-plus": {
+      "src": "../../element-plus/es/index.mjs",
+      "file": "element-plus.js",
+      "fileHash": "cbbeb27c",
+      "needsInterop": false
+    },
+    "element-plus/lib/locale/lang/zh-CN": {
+      "src": "../../element-plus/lib/locale/lang/zh-CN.js",
+      "file": "element-plus_lib_locale_lang_zh-CN.js",
+      "fileHash": "db1be16d",
+      "needsInterop": true
+    },
+    "vue": {
+      "src": "../../vue/dist/vue.runtime.esm-bundler.js",
+      "file": "vue.js",
+      "fileHash": "875c02e4",
+      "needsInterop": false
+    },
+    "vue-router": {
+      "src": "../../vue-router/dist/vue-router.esm-bundler.js",
+      "file": "vue-router.js",
+      "fileHash": "543105fb",
+      "needsInterop": false
+    },
+    "vue3-cookies": {
+      "src": "../../vue3-cookies/dist/index.js",
+      "file": "vue3-cookies.js",
+      "fileHash": "d7ce3c7b",
+      "needsInterop": false
+    },
+    "vuex": {
+      "src": "../../vuex/dist/vuex.esm-bundler.js",
+      "file": "vuex.js",
+      "fileHash": "7dad7eb6",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-ZFRTMYB3": {
+      "file": "chunk-ZFRTMYB3.js"
+    },
+    "chunk-YCDKVWN7": {
+      "file": "chunk-YCDKVWN7.js"
+    },
+    "chunk-EVS5FBPM": {
+      "file": "chunk-EVS5FBPM.js"
+    },
+    "chunk-PA25SUH2": {
+      "file": "chunk-PA25SUH2.js"
+    },
+    "chunk-IGMYUX52": {
+      "file": "chunk-IGMYUX52.js"
+    }
+  }
+}

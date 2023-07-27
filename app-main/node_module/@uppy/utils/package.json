@@ -1,0 +1,58 @@
+{
+  "_args": [
+    [
+      "@uppy/utils@4.1.2",
+      "E:\\编程\\软件业务2\\V11\\company-vue"
+    ]
+  ],
+  "_from": "@uppy/utils@4.1.2",
+  "_id": "@uppy/utils@4.1.2",
+  "_inBundle": false,
+  "_integrity": "sha512-rl9aKRE4o2mRKVAhYHHf8uV7BoUOQkvDH6yOaJ4tuHJ6HgPkvxVxqUY8L+yKV1hx4mw6OF9hLIzpW/+TLSfyfQ==",
+  "_location": "/@uppy/utils",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@uppy/utils@4.1.2",
+    "name": "@uppy/utils",
+    "escapedName": "@uppy%2futils",
+    "scope": "@uppy",
+    "rawSpec": "4.1.2",
+    "saveSpec": null,
+    "fetchSpec": "4.1.2"
+  },
+  "_requiredBy": [
+    "/@uppy/companion-client",
+    "/@uppy/core",
+    "/@uppy/xhr-upload"
+  ],
+  "_resolved": "https://registry.npmmirror.com/@uppy/utils/-/utils-4.1.2.tgz",
+  "_spec": "4.1.2",
+  "_where": "E:\\编程\\软件业务2\\V11\\company-vue",
+  "bugs": {
+    "url": "https://github.com/transloadit/uppy/issues"
+  },
+  "dependencies": {
+    "lodash.throttle": "^4.1.1"
+  },
+  "description": "Shared utility functions for Uppy Core and plugins maintained by the Uppy team.",
+  "devDependencies": {
+    "@jest/globals": "^27.4.2"
+  },
+  "homepage": "https://uppy.io",
+  "keywords": [
+    "file uploader",
+    "uppy"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "name": "@uppy/utils",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/transloadit/uppy.git"
+  },
+  "type": "module",
+  "types": "types/index.d.ts",
+  "version": "4.1.2"
+}
