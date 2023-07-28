@@ -1,47 +1,77 @@
 package com.enstudy.demo.controller;
 
-import com.enstudy.demo.controller.form.LoginForm;
+import cn.hutool.json.JSONUtil;
+import com.enstudy.demo.controller.form.*;
 import com.enstudy.demo.dto.R;
 import com.enstudy.demo.pojo.User;
-import com.enstudy.demo.service.Impl.userServiceImpl;
-
+import com.enstudy.demo.service.Impl.UserServiceImpl;;
+import com.enstudy.demo.util.PageUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.*;
 
 @RestController
 @RequestMapping("/user")
-@Tag(name = "UserController",description = "用户Web接口")
+@Tag(name = "UserController", description = "学生Web接口")
 public class UserController {
 
     @Autowired
-    private userServiceImpl userService;
+    private UserServiceImpl userService;
 
-    @PostMapping("login")
-    @Operation(summary = "登陆系统")
-    public R login(@Valid @RequestBody LoginForm form
-            , HttpSession session
-            , RedirectAttributes redirectAttributes) {
-        User user = userService.login(form.getUsername(), form.getPassword());
-        R r=R.ok().put("result", user!=null?true:false);
-        if (user != null) {
-            user.setPassword(null);
-            session.setAttribute("User", user);
-            return r;
-        } else {
-            //model.addAttribute("msg","密码或用户名错误");
-            redirectAttributes.addFlashAttribute("msg", "密码或用户名错误");
-            return r;
+    @PostMapping("/listUserByPage")
+    @Operation(summary = "查询学生分页数据")
+    public R listUserByPage(@Valid @RequestBody SearchUserByPageForm form) {
+        HashMap param = JSONUtil.parse(form).toBean(HashMap.class);
+        PageUtil pageUtils = userService.listUserByPage(param);
+        return R.ok().put("page", pageUtils);
+    }
+
+    @PostMapping("/insert")
+    @Operation(summary = "添加学生")
+    public R insert(@Valid @RequestBody InsertUserForm form) {
+        User user = JSONUtil.parse(form).toBean(User.class);
+        if(!userService.ifNicknameExists(form.getNickname(), null)) {
+            int rows = userService.insert(user);
+            return R.ok().put("rows", rows);
+        }else {
+            return R.error("错误:昵称已存在");
         }
+    }
+
+    @PostMapping("/deleteUserByIds")
+    @Operation(summary = "删除学生记录")
+    public R deleteDeptByIds(@Valid @RequestBody DeleteByIdsForm form) {
+        int rows = userService.deleteUserByIds(form.getIds());
+        return R.ok().put("rows", rows);
+    }
+
+    @PostMapping("/update")
+    @Operation(summary = "更新学生")
+    public R update(@Valid @RequestBody UpdateUserForm form) {
+        HashMap param = JSONUtil.parse(form).toBean(HashMap.class);
+        if(!userService.ifNicknameExists(form.getNickname(), form.getId())) {
+            int rows = userService.update(param);
+            return R.ok().put("rows", rows);
+        }else {
+            return R.error("错误:昵称已存在");
+        }
+    }
+    
+    @GetMapping("/listValidUser")
+    @Operation(summary = "查询有效学生")
+    public R searchValidUser() {
+        List<User> dataList =  userService.listValidUser();
+        return R.ok().put("dataList", dataList);
+    }
+    
+    @PostMapping("/listPageValidUser")
+    @Operation(summary = "查询当前页有效学生")
+    public R searchPageValidUser(@Valid @RequestBody SearchFrontByPageForm form) {
+        HashMap param = JSONUtil.parse(form).toBean(HashMap.class);
+        PageUtil pageUtils = userService.listPageValidUser(param);
+        return R.ok().put("page", pageUtils);
     }
 }

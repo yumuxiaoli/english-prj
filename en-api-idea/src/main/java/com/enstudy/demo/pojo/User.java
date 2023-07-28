@@ -1,26 +1,20 @@
 package com.enstudy.demo.pojo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class User {
-    private int id;
+    private Integer id;
     private String username;
-    private String password;
     private String nickname;
+    private String password;
+    private String salt;
+    private String image;
+    private Integer imageSize;
     private String email;
     private String phone;
-    private String salt;
-    private Data create_time;
-    private Data update_time;
-    private Data delete_time;
-
-    private List<User> user = new ArrayList<>();
+    private Date createdAt;
+    private Date updatedAt;
 }

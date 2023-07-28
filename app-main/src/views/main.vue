@@ -39,21 +39,24 @@
 							<span class="iconfont">&#xe60e;</span>
 							<span>首页</span>
 						</template>
-						<el-sub-menu index="1-1">
-							<template #title>组织管理</template>
-							<el-menu-item index="1-1-1"
-								@click="$router.push({ name: 'Dept' })"
-							>部门管理</el-menu-item>
-							<el-menu-item index="1-1-2"
-								@click="$router.push({ name: 'Role' })"
-							>角色管理</el-menu-item>
-							<el-menu-item index="1-1-3"
-								@click="$router.push({ name: 'User' })"
-							>用户管理</el-menu-item>
-							<el-menu-item index="1-1-4"
-								@click="$router.push({ name: 'Position' })"
-							>职位管理</el-menu-item>
-						</el-sub-menu>
+						<el-menu-item index="1-1"
+						@click="$router.push({ name: 'User' })">
+						学生管理</el-menu-item>
+						<el-menu-item index="1-2"
+						@click="$router.push({ name: 'Teacher' })">
+						讲师管理</el-menu-item>
+						<el-menu-item index="1-3"
+						@click="$router.push({ name: 'Assort' })">
+						分类管理</el-menu-item>
+						<el-menu-item index="1-4"
+						@click="$router.push({ name: 'Course' })">
+						课程管理</el-menu-item>
+						<el-menu-item index="1-5"
+						@click="$router.push({ name: 'Span' })">
+						文章管理</el-menu-item>
+						<el-menu-item index="1-6"
+						@click="$router.push({ name: 'Video' })">
+						视频管理</el-menu-item>
 					</el-sub-menu>
 				</el-menu>
 			</div>
@@ -150,9 +153,7 @@
 		// 方法
 		const logout = async () => {
 			await get('user/logout').then((resp) => {
-				console.log(resp)
 				//退出登陆之后没有必要在storage中保存用户权限，所以删除permissions
-				localStorage.removeItem('permissions');
 				localStorage.removeItem('token');
 				//跳转到登陆页面
 				router.push({

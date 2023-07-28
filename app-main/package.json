@@ -9,7 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-basic-styles": "^38.1.1",
+    "@ckeditor/ckeditor5-vue": "^5.1.0",
     "axios": "^1.4.0",
+    "ckeditor5-custom-build": "file:ckeditor5-36.0.1",
     "dayjs": "^1.11.9",
     "echarts": "^5.4.2",
     "element-plus": "^2.3.8",

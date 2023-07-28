@@ -3,7 +3,7 @@
 </template>
 <script setup>
 import { ref, reactive, getCurrentInstance } from 'vue'
-//import '../assets/ckeditor5-36.0.1/build/ckeditor' //此处引入ClassicEditor
+import '../../ckeditor5-36.0.1/build/ckeditor' //此处引入ClassicEditor
 const ckUploadUrl = getCurrentInstance()?.appContext.config.globalProperties.$ckuploadUrl //获取再main.js中定义的全局变量$ckuploadUrl
 const state = reactive({
   editor: ClassicEditor,

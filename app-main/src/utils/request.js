@@ -72,8 +72,8 @@ export const multiLooseGet = (getArray) => { // 同时发出多个请求从服�
 //param.msg: 业务失败情况下的自定义提示信息
 //param.dataLoading: 正在加载变量
 //callback: 成功的回调
-const SUCCESS = 6666 //服务器端返回的数据中code:6666表示业务完成成功
-const FAIL = 7777 //服务器端返回的数据中code:7777表示业务完成失败
+const SUCCESS = 666 //服务器端返回的数据中code:6666表示业务完成成功
+const FAIL = 777 //服务器端返回的数据中code:7777表示业务完成失败
 export const handleResponse = (param, callback) => {
   if(!(param.resp == undefined || param.resp == null || param.resp.data == undefined || param.resp.data == null)){ //响应有效
     //无论响应是何种状况，假如有正在加载的动态效果存在，则先关闭此效果

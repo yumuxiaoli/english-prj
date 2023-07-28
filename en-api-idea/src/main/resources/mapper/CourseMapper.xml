@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.enstudy.demo.dao.CourseMapper">
+  <resultMap id="BaseResultMap" type="com.enstudy.demo.pojo.Course">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="introduce" jdbcType="VARCHAR" property="introduce" />
+    <result column="details" jdbcType="VARCHAR" property="details" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="image_size" jdbcType="INTEGER" property="imageSize" />
+    <result column="assort_id" jdbcType="INTEGER" property="assortId" />
+    <result column="teacher_id" jdbcType="INTEGER" property="teacherId" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,
+    name,
+    introduce,
+    details,
+    image,
+    image_size,
+    assort_id,
+    teacher_id,
+    sort,
+    created_at,
+    updated_at
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from course
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.enstudy.demo.pojo.Course">
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="introduce != null">
+        introduce,
+      </if>
+      <if test="details != null">
+        details,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="imageSize != null">
+        image_size,
+      </if>
+      <if test="assortId != null">
+        assort_id,
+      </if>
+      <if test="teacherId != null">
+        teacher_id,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null">
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null">
+        #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="imageSize != null">
+        #{imageSize,jdbcType=INTEGER},
+      </if>
+      <if test="assortId != null">
+        #{assortId,jdbcType=INTEGER},
+      </if>
+      <if test="teacherId != null">
+        #{teacherId,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="HashMap">
+    update course
+    <set>
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null">
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="details != null">
+        details = #{details,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="imageSize != null">
+        image_size = #{imageSize,jdbcType=INTEGER},
+      </if>
+      <if test="assortId != null">
+        assort_id = #{assortId,jdbcType=INTEGER},
+      </if>
+      <if test="teacherId != null">
+        teacher_id = #{teacherId,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER} and updated_at = #{previousUpdatedAt,jdbcType=TIMESTAMP}
+  </update>
+ 
+  <select id="listPageCourse" parameterType="HashMap" resultType="HashMap">
+    SELECT
+        t.id id,
+        t.name name,
+        t.image_size imageSize,
+        t.assort_id assortId,
+        t.teacher_id teacherId,
+        t.sort sort,
+        DATE_FORMAT(t.`updated_at`, "%Y-%m-%d %H:%i:%s") as updatedAt
+    FROM course t
+    WHERE 1=1
+    <if test="name!=null">
+      AND t.name LIKE '%${name}%'
+    </if>
+    order by
+    <if test="orderColumn!=null">
+      t.${orderColumn} <if test="orderType=='descending'">desc</if>,
+    </if>
+    t.id desc
+  </select>
+
+  <update id="backMove">
+    update course
+    set sort=sort-1
+    where sort between #{oldValue} and #{newValue}
+  </update>
+
+  <update id="forwardMove">
+    update course
+    set sort=sort+1
+    where 1=1
+    <if test="newValue!=null">
+      AND sort &gt;= #{newValue}
+    </if>
+    <if test="oldValue!=null">
+      AND sort &lt;= #{oldValue}
+    </if>
+  </update>
+  
+  <delete id="deleteCourseByIds">
+    DELETE FROM course
+    WHERE id IN
+    <foreach collection="array" open="(" separator="," close=")" item="one">
+      #{one}
+    </foreach>
+  </delete>
+
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from course
+    where name = #{name,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="listValidCourse" parameterType="HashMap" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from course
+    where status='V' order by sort
+  </select>
+  
+  <select id="listPageValidCourse" parameterType="HashMap" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from course
+    where status='V' order by sort
+  </select>
+
+</mapper>

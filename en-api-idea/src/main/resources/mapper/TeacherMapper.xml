@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.enstudy.demo.dao.TeacherMapper">
+  <resultMap id="BaseResultMap" type="com.enstudy.demo.pojo.Teacher">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="image_size" jdbcType="INTEGER" property="imageSize" />
+    <result column="introduce" jdbcType="VARCHAR" property="introduce" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,
+    number,
+    name,
+    image,
+    image_size,
+    introduce,
+    sort,
+    created_at,
+    updated_at
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from teacher
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.enstudy.demo.pojo.Teacher">
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="imageSize != null">
+        image_size,
+      </if>
+      <if test="introduce != null">
+        introduce,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="imageSize != null">
+        #{imageSize,jdbcType=INTEGER},
+      </if>
+      <if test="introduce != null">
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="HashMap">
+    update teacher
+    <set>
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="imageSize != null">
+        image_size = #{imageSize,jdbcType=INTEGER},
+      </if>
+      <if test="introduce != null">
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER} and updated_at = #{previousUpdatedAt,jdbcType=TIMESTAMP}
+  </update>
+ 
+  <select id="listPageTeacher" parameterType="HashMap" resultType="HashMap">
+    SELECT
+        t.id id,
+        t.number number,
+        t.name name,
+        t.image_size imageSize,
+        t.introduce introduce,
+        t.sort sort,
+        DATE_FORMAT(t.`updated_at`, "%Y-%m-%d %H:%i:%s") as updatedAt
+    FROM teacher t
+    WHERE 1=1
+    <if test="number!=null">
+      AND t.number = #{number}
+    </if>
+    <if test="name!=null">
+      AND t.name LIKE '%${name}%'
+    </if>
+    order by
+    <if test="orderColumn!=null">
+      t.${orderColumn} <if test="orderType=='descending'">desc</if>,
+    </if>
+    t.id desc
+  </select>
+
+  <update id="backMove">
+    update teacher
+    set sort=sort-1
+    where sort between #{oldValue} and #{newValue}
+  </update>
+
+  <update id="forwardMove">
+    update teacher
+    set sort=sort+1
+    where 1=1
+    <if test="newValue!=null">
+      AND sort &gt;= #{newValue}
+    </if>
+    <if test="oldValue!=null">
+      AND sort &lt;= #{oldValue}
+    </if>
+  </update>
+  
+  <delete id="deleteTeacherByIds">
+    DELETE FROM teacher
+    WHERE id IN
+    <foreach collection="array" open="(" separator="," close=")" item="one">
+      #{one}
+    </foreach>
+  </delete>
+
+  <select id="selectByNumber" parameterType="Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from teacher
+    where number = #{number,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="listValidTeacher" parameterType="HashMap" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from teacher
+    where status='V' order by sort
+  </select>
+  
+  <select id="listPageValidTeacher" parameterType="HashMap" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from teacher
+    where status='V' order by sort
+  </select>
+
+</mapper>

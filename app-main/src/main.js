@@ -72,8 +72,8 @@ axios.interceptors.response.use(function(response){
 
 // chkeditor
 // 全局引入
-// import CKEditor from '@ckeditor/ckeditor5-vue'; 
-// app.use(CKEditor)
+import CKEditor from '@ckeditor/ckeditor5-vue'; 
+app.use(CKEditor)
 
 
 //定义全局变量，设置富文本编辑器的图片上次地址：
