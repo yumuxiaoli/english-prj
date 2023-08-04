@@ -194,14 +194,16 @@
     select
     <include refid="Base_Column_List" />
     from user
-    where status='V' 
   </select>
   
   <select id="listPageValidUser" parameterType="HashMap" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from user
-    where status='V' 
+  </select>
+
+  <select id="checkUser" resultType="com.enstudy.demo.pojo.User">
+    select * from user where username = #{username};
   </select>
 
 </mapper>

@@ -33,19 +33,6 @@ public interface TeacherMapper {
     public ArrayList<HashMap> listPageTeacher(HashMap param);
 
     /**
-     * 显示顺序后移
-     * @param oldValue
-     * @param newValue
-     */
-    void backMove(@Param("oldValue") Integer oldValue, @Param("newValue") Integer newValue);
-
-    /**
-     * 显示顺序前移
-     * @param oldValue
-     * @param newValue
-     */
-    void forwardMove(@Param("oldValue") Integer oldValue, @Param("newValue") Integer newValue);
-    /**
      * 删除讲师信息
      * @param ids
      * @return
@@ -56,7 +43,7 @@ public interface TeacherMapper {
      * @param number
      * @return
      */
-    Teacher selectByNumber(Integer number);
+    Teacher selectByNumber(String number);
     
     /**
      * 查询有效讲师

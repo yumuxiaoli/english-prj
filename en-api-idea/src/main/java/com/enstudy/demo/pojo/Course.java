@@ -14,7 +14,6 @@ public class Course {
     private Integer imageSize;
     private Integer assortId;
     private Integer teacherId;
-    private Integer sort;
     private Date createdAt;
     private Date updatedAt;
 }

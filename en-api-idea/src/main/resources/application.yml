@@ -77,11 +77,11 @@ springdoc:
 ## 七牛云配置
 qiniu:
   endpoint: http://
-  access-key: -ynHqLoqQ27nuHGQ21z5_QKQE1fYlaMfUcrYRQFs
-  secret-key: fm2_yg6ZAhwkwUa2P2IUqm-cmYwZTBj1wK9XuMtn
-  bucket: nitspace
+  access-key: pUPu5lrpjPWdaRYdAM8jVVUH4ScCPz5wesADV6Ke
+  secret-key: m6f9Kx1v_KYbUfXkL6PCJWdAUxzGSGfWMPLX9nzI
+  bucket: yumudemo
   zone: zone2 # [{'zone0':'华东'}, {'zone1':'华北'},{'zone2':'华南'},{'zoneNa0':'北美'},{'zoneAs0':''}]
-  domain-of-bucket: rxzbgo2zp.hn-bkt.clouddn.com
+  domain-of-bucket: ryalk03vf.hn-bkt.clouddn.com
   #  domain-of-bucket: ri5eydp89.hn-bkt.clouddn.com #外链默认域名，该空间的默认域名
   # 链接过期时间，单位是秒，3600代表1小时，-1代表永不过期
   expire-in-seconds: -1

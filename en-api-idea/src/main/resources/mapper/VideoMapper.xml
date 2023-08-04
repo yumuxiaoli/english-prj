@@ -151,14 +151,12 @@
     select
     <include refid="Base_Column_List" />
     from video
-    where status='V' 
   </select>
   
   <select id="listPageValidVideo" parameterType="HashMap" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from video
-    where status='V' 
   </select>
 
 </mapper>

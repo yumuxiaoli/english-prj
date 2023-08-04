@@ -17,10 +17,9 @@ public class UpdateTeacherForm {
     @Schema(description = "主键")
     private Integer id;
     
-    @NotNull(message = "number不能为空")
-    @Min(value = 1, message = "number不能小于1")
+    @NotBlank(message = "number不能为空")
     @Schema(description = "编号")
-    private Integer number;
+    private String number;
     
     @NotBlank(message = "name不能为空")
     @Schema(description = "姓名")
@@ -38,18 +37,9 @@ public class UpdateTeacherForm {
     @Schema(description = "简介")
     private String introduce;
     
-    @NotNull(message = "sort不能为空")
-    @Min(value = 1, message = "sort不能小于1")
-    @Schema(description = "顺序")
-    private Integer sort;
-    
     
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     @Schema(description = "修改时间")
     private Date updatedAt;
     
-    @NotNull(message = "oldSort不能为空")
-    @Min(value = 1, message = "oldSort不能小于1")
-    @Schema(description = "更新前的顺序")
-    private Integer oldSort;
 }

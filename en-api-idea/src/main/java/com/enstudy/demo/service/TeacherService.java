@@ -5,19 +5,18 @@ import com.enstudy.demo.pojo.Teacher;
 import com.enstudy.demo.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 
-
+@Service
 public interface TeacherService {
 
-    public PageUtil listTeacherByPage(HashMap param) ;
+    public PageUtil listTeacherByPage(HashMap param);
 
-    public int deleteTeacherByIds(Integer[] ids) ;
-
+    public int deleteTeacherByIds(Integer[] ids);
+    
     public int insert(Teacher teacher);
 
-    public boolean ifNumberExists(Integer number, Integer id) ;
+    public boolean ifNumberExists(String number, Integer id) ;
 
     public Teacher selectById(Integer id);
 

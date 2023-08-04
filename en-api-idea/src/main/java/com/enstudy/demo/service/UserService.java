@@ -21,4 +21,8 @@ public interface UserService {
     public List<User> listValidUser();
 
     public PageUtil listPageValidUser(HashMap param);
+
+    public User login(String username, String password);
+
+    public int register(User user);
 }

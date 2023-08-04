@@ -30,7 +30,7 @@ public class UpdateCourseForm {
     private String details;
     
     
-    @Schema(description = "头像")
+    @Schema(description = "图片")
     private String image;
     
     @Min(value = 1, message = "imageSize不能小于1")
@@ -47,18 +47,9 @@ public class UpdateCourseForm {
     @Schema(description = "老师")
     private Integer teacherId;
     
-    @NotNull(message = "sort不能为空")
-    @Min(value = 1, message = "sort不能小于1")
-    @Schema(description = "顺序")
-    private Integer sort;
-    
     
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     @Schema(description = "修改时间")
     private Date updatedAt;
     
-    @NotNull(message = "oldSort不能为空")
-    @Min(value = 1, message = "oldSort不能小于1")
-    @Schema(description = "更新前的顺序")
-    private Integer oldSort;
 }

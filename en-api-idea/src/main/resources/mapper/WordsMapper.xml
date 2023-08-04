@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.enstudy.demo.dao.WordsMapper">
+  <resultMap id="BaseResultMap" type="com.enstudy.demo.pojo.Words">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="words" jdbcType="VARCHAR" property="words" />
+    <result column="pron" jdbcType="VARCHAR" property="pron" />
+    <result column="explains" jdbcType="VARCHAR" property="explains" />
+    <result column="grades" jdbcType="VARCHAR" property="grades" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id,
+    words,
+    pron,
+    explains,
+    grades,
+    created_at,
+    updated_at
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from words
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from words
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.enstudy.demo.pojo.Words">
+    insert into words
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="words != null">
+        words,
+      </if>
+      <if test="pron != null">
+        pron,
+      </if>
+      <if test="explains != null">
+        explains,
+      </if>
+      <if test="grades != null">
+        grades,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="words != null">
+        #{words,jdbcType=VARCHAR},
+      </if>
+      <if test="pron != null">
+        #{pron,jdbcType=VARCHAR},
+      </if>
+      <if test="explains != null">
+        #{explains,jdbcType=VARCHAR},
+      </if>
+      <if test="grades != null">
+        #{grades,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="HashMap">
+    update words
+    <set>
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="words != null">
+        words = #{words,jdbcType=VARCHAR},
+      </if>
+      <if test="pron != null">
+        pron = #{pron,jdbcType=VARCHAR},
+      </if>
+      <if test="explains != null">
+        explains = #{explains,jdbcType=VARCHAR},
+      </if>
+      <if test="grades != null">
+        grades = #{grades,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER} and updated_at = #{previousUpdatedAt,jdbcType=TIMESTAMP}
+  </update>
+ 
+  <select id="listPageWords" parameterType="HashMap" resultType="HashMap">
+    SELECT
+        t.id id,
+        t.words words,
+        t.pron pron,
+        t.explains explains,
+        t.grades grades,
+        DATE_FORMAT(t.`updated_at`, "%Y-%m-%d %H:%i:%s") as updatedAt
+    FROM words t
+    WHERE 1=1
+    <if test="words!=null">
+      AND t.words LIKE '%${words}%'
+    </if>
+    order by
+    <if test="orderColumn!=null">
+      t.${orderColumn} <if test="orderType=='descending'">desc</if>,
+    </if>
+    t.id desc
+  </select>
+
+  
+  <delete id="deleteWordsByIds">
+    DELETE FROM words
+    WHERE id IN
+    <foreach collection="array" open="(" separator="," close=")" item="one">
+      #{one}
+    </foreach>
+  </delete>
+
+  <select id="selectByWords" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from words
+    where words = #{words,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="listValidWords" parameterType="HashMap" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from words
+    where status='V' 
+  </select>
+  
+  <select id="listPageValidWords" parameterType="HashMap" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from words
+    where status='V' 
+  </select>
+
+  <select id="randWords" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from words
+    as a1
+    join (
+      select round(rand() * (select max(id) from words )) as id
+    ) as a2
+    where words != #{words,jdbcType=VARCHAR}  and
+        a1.id >= a2.id
+    order by a1.id asc LIMIT 50;
+
+
+  </select>
+
+
+
+</mapper>

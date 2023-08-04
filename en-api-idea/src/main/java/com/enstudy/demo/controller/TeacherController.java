@@ -71,7 +71,6 @@ public class TeacherController {
     
     @GetMapping("/listValidTeacher")
     @Operation(summary = "查询有效讲师")
-    //@SaCheckPermission(value = {"ROOT"}, mode = SaMode.OR)
     public R searchValidTeacher() {
         List<Teacher> dataList =  teacherService.listValidTeacher();
         return R.ok().put("dataList", dataList);
@@ -79,7 +78,6 @@ public class TeacherController {
     
     @PostMapping("/listPageValidTeacher")
     @Operation(summary = "查询当前页有效讲师")
-    //@SaCheckPermission(value = {"ROOT"}, mode = SaMode.OR)
     public R searchPageValidTeacher(@Valid @RequestBody SearchFrontByPageForm form) {
         HashMap param = JSONUtil.parse(form).toBean(HashMap.class);
         PageUtil pageUtils = teacherService.listPageValidTeacher(param);

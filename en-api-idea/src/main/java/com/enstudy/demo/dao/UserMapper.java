@@ -56,4 +56,6 @@ public interface UserMapper {
      * @return
      */
     List<User> listPageValidUser(HashMap map);
+
+    User checkUser(String username);
 }

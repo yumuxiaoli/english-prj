@@ -1,12 +1,12 @@
 //package com.enstudy.demo;
 //
-//import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.SqlTableCreateUtil;
 //import org.springframework.boot.test.context.SpringBootTest;
 //
 //@SpringBootTest
 //class EnApiIdeaApplicationTests {
 //
-//    @Test
+//    @SqlTableCreateUtil
 //    void contextLoads() {
 //
 //    }

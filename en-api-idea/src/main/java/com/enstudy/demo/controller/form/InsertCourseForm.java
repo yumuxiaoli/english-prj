@@ -24,7 +24,7 @@ public class InsertCourseForm {
     private String details;
     
     @NotBlank(message = "image不能为空")
-    @Schema(description = "头像")
+    @Schema(description = "图片")
     private String image;
     
     @NotNull(message = "imageSize不能为空")
@@ -41,11 +41,6 @@ public class InsertCourseForm {
     @Min(value = 1, message = "teacherId不能小于1")
     @Schema(description = "老师")
     private Integer teacherId;
-    
-    @NotNull(message = "sort不能为空")
-    @Min(value = 1, message = "sort不能小于1")
-    @Schema(description = "顺序")
-    private Integer sort;
     
     
     

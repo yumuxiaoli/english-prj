@@ -1,0 +1,35 @@
+.user-con{
+    display: flex;
+    justify-content: center;
+}
+
+.user-aside{
+    padding: 50px;
+    width: 350px;
+}
+
+.user-main{
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+/* .user-middle{
+
+} */
+
+.demo-type{
+    height: 500px;
+}
+
+.text {
+font-size: 14px;
+}
+
+.item {
+padding: 18px 0;
+}
+
+.user-contain{
+    padding: 10px;
+}

@@ -1,0 +1,266 @@
+<template>
+
+  <!-- header start -->
+
+  <header class="header">
+    <nav class="navbar navbar-expand-lg p-0">
+      <div class="container">
+        <a class="navbar-brand p-0 logo" href="#" title="Edu Tech"><img src="../static/picture/logo.svg" alt="logo"></a>
+        <i class="fa-solid fa-bars navbar-toggler shadow-none border-0 p-0" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"></i>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-lg-auto align-items-lg-center">
+            <li class="nav-item">
+              <a class="nav-link d-inline-block" aria-current="page" href="#features" title="Features">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-inline-block" href="#Class" title="Class">Class</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-inline-block" href="#Blog" title="Products">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-inline-block" href="#Contacts" title="Contacts">Contacts</a>
+            </li>
+          </ul>
+          <a href="#" class="theme-button d-lg-block d-none">Join Now</a>          
+        </div>
+        <div class="imge_el">
+            <el-avatar :size="55" padding-left="10px"> user </el-avatar>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+<!-- header end -->
+
+<!-- hero banner start -->
+
+<section class="hero-banner position-relative padding-vertical pb-lg-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-7 col-lg-6 content text-lg-start text-center order-lg-1 order-2">
+        <div class="inner-box">
+          <h1 class="m-0"><span>Studying</span> Online is now much easier</h1>
+          <p class="m-0 mx-lg-0 mx-auto">Skilline is an interesting platform that will teach you in more an interactive way</p>
+          <div class="hero-banner-btn d-flex align-items-center justify-content-lg-start justify-content-center">
+            <a href="#" class="theme-button">Join for free</a>
+            <a href="javascript:" class="play-btn" data-bs-toggle="modal" data-bs-target="#heromodal" title="Click To Play"><i class="fa-solid fa-play"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-5 col-lg-6 image order-lg-2 order-1">
+        <div class="inner-box position-relative">
+          <img src="../static/picture/hero_banner_girl.png" class="mx-auto d-block main-image" alt="hero_banner_girl">
+          <div class="calender assist position-absolute justify-content-center align-items-center">
+            <span class="icon">
+              <img src="static/picture/calendar.svg" alt="calendar">
+            </span>
+            <div class="title d-inline-block">
+              <h5 class="m-0 secondary-color">250k</h5>
+              <p class="m-0">Assisted Student</p>
+            </div>
+          </div>
+          <div class="calender mail position-absolute justify-content-center align-items-center">
+            <div class="inner-box d-flex align-items-center position-relative">
+              <span class="icon">
+                <img src="static/picture/email.svg" alt="email">
+              </span>
+              <div class="title d-inline-block">
+                <h5 class="m-0 secondary-color">Congratulations</h5>
+                <p class="m-0">Your admission completed</p>
+              </div>
+              <img src="static/picture/check.svg" class="position-absolute check" alt="check">
+            </div>
+          </div>
+          <div class="calender user position-absolute justify-content-center align-items-center">
+            <span class="icon">
+              <img src="static/picture/profile.jpg" class="p-0" alt="profile">
+            </span>
+            <div class="title d-inline-block">
+              <h5 class="m-0 secondary-color">User Experience Class</h5>
+              <p class="m-0">Today at 12.00 PM</p>
+              <a href="#" class="theme-button">Join Now</a>
+            </div>
+          </div>
+          <div class="vertical-bar position-absolute justify-content-center align-items-center">
+            <img src="static/picture/vertical-bar.svg" alt="vertical-bar">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="custom-shape-divider-bottom-1679997055">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1200 120" preserveaspectratio="none">
+      <path d="M600,112.77C268.63,112.77,0,65.52,0,7.23V120H1200V7.23C1200,65.52,931.37,112.77,600,112.77Z" class="shape-fill"></path>
+    </svg>
+  </div>
+</section>
+
+<!-- Modal start -->
+
+<div class="modal fade" id="heromodal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-end upper">
+        <button type="button" class="close-button" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="ratio ratio-16x9">
+          <iframe src="XHOmBV4js_E.html" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe> 
+        </div>           
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal end -->
+
+
+  <!-- popular class start -->
+
+  <section class="popular-class padding-bottom overflow-hidden">
+    <div class="container">
+      <h3 class="m-0 text-lg-start text-center">Our Most Popular Class</h3>
+      <div class="popular-class-slider">
+        <div class="main-box">
+          <div class="card theme-box-hover border-0 ">
+            <img src="static/picture/figma_design.jpg" class="card-img-top" alt="figma_design" title="Figma UI UX Design">
+            <div class="card-body">
+              <div class="prefix">Design</div>
+              <div class="title d-flex align-items-center justify-content-between">
+                <h4 class="price secondary-color m-0"><a href="#">Figma UI UX Design..</a></h4>
+                <a href="#"><img src="static/picture/right-arrow.svg" alt="right-arrow"></a>
+              </div>
+              <p class="card-text body-color-grey">Use Figma to get a job in UI Design, User Interface, User Experience design.</p>
+              <a href="#" class="review">4.3 <img src="static/picture/5star.svg" class="px-2" alt="5star"><span>(16,325)</span></a>
+              <div class="tutor d-flex align-items-center">
+                <img src="static/picture/tutor.jpg" alt="tutor">
+                <div class="name">
+                  <p class="m-0 secondary-color">Jane Cooper</p>
+                  <p class="m-0">2001 Enrolled</p>
+                </div>
+                <a href="#" class="primary-color ms-auto">$17.84</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main-box">
+          <div class="card theme-box-hover border-0 ">
+            <img src="static/picture/learn_with_shoaib.jpg" class="card-img-top" alt="learn_with_shoaib" title="learn with shoaib">
+            <div class="card-body">
+              <div class="prefix">Design</div>
+              <div class="title d-flex align-items-center justify-content-between">
+                <h4 class="price secondary-color m-0"><a href="#">Learn With Shoaib</a></h4>
+                <a href="#"><img src="static/picture/right-arrow.svg" alt="right-arrow"></a>
+              </div>
+              <p class="card-text body-color-grey">Design Web Sites and Mobile Apps that Your Users Love and Return to Again.</p>
+              <a href="#" class="review">3.9 <img src="static/picture/5star.svg" class="px-2" alt="5star"><span>(832)</span></a>
+              <div class="tutor d-flex align-items-center">
+                <img src="static/picture/jenny_wilson.jpg" alt="jenny_wilson">
+                <div class="name">
+                  <p class="m-0 secondary-color">Jenny Wilson</p>
+                  <p class="m-0">2001 Enrolled</p>
+                </div>
+                <a href="#" class="primary-color ms-auto">$8.99</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main-box">
+          <div class="card theme-box-hover border-0 ">
+            <img src="static/picture/interface.jpg" class="card-img-top" alt="interface" title="Building User Interface">
+            <div class="card-body">
+              <div class="prefix">Design</div>
+              <div class="title d-flex align-items-center justify-content-between">
+                <h4 class="price secondary-color m-0"><a href="#">Building User Interface..</a></h4>
+                <a href="#"><img src="static/picture/right-arrow.svg" alt="right-arrow"></a>
+              </div>
+              <p class="card-text body-color-grey">Learn how to apply User Experience (UX) principles to your website designs.</p>
+              <a href="#" class="review">4.2 <img src="static/picture/5star.svg" class="px-2" alt="5star"><span>(125)</span></a>
+              <div class="tutor d-flex align-items-center">
+                <img src="static/picture/esther_howard.jpg" alt="esther_howard">
+                <div class="name">
+                  <p class="m-0 secondary-color">Esther Howard</p>
+                  <p class="m-0">2001 Enrolled</p>
+                </div>
+                <a href="#" class="primary-color ms-auto">$11.70</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main-box">
+          <div class="card theme-box-hover border-0 ">
+            <img src="static/picture/learn_with_shoaib.jpg" class="card-img-top" alt="learn_with_shoaib" title="learn with shoaib">
+            <div class="card-body">
+              <div class="prefix">Design</div>
+              <div class="title d-flex align-items-center justify-content-between">
+                <h4 class="price secondary-color m-0"><a href="#">Learn With Shoaib</a></h4>
+                <a href="#"><img src="static/picture/right-arrow.svg" alt="right-arrow"></a>
+              </div>
+              <p class="card-text body-color-grey">Design Web Sites and Mobile Apps that Your Users Love and Return to Again.</p>
+              <a href="#" class="review">3.9 <img src="static/picture/5star.svg" class="px-2" alt="5star"><span>(832)</span></a>
+              <div class="tutor d-flex align-items-center">
+                <img src="static/picture/jenny_wilson.jpg" alt="jenny_wilson">
+                <div class="name">
+                  <p class="m-0 secondary-color">Jenny Wilson</p>
+                  <p class="m-0">2001 Enrolled</p>
+                </div>
+                <a href="#" class="primary-color ms-auto">$8.99</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- popular class end -->
+
+
+<!-- footer start -->
+
+<footer>
+  <div class="container">
+    <div class="main-box">
+      <div class="main-content text-center mx-auto wow fadeInUp">
+        <a href="#" class="d-block logo" title="Edu Tech"><img src="static/picture/logo.svg" alt="logo"></a>
+        <p class="m-0 body-color-white">
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+          industry's standard dummy
+        </p>
+        <ul class="m-0 p-0 inner-wrapper">
+          <li>
+            <a href="#" title="Careers">Careers</a>
+          </li>
+          <li>
+            <a href="#" title="Privacy Policy">Privacy Policy</a>
+          </li>
+          <li>
+            <a href="#" title="Terms & Conditions">Terms & Conditions</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright wow fadeInUp">
+      <p class="m-0 text-center body-color-white">Copyright &copy; 2023.Company name All rights reserved.<a target="_blank" href="https://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- footer end -->
+
+<!-- top button start -->
+
+<div class="top">
+  <button class="d-flex align-items-center justify-content-center">
+    <i class="fa-solid fa-chevron-up"></i>
+  </button>
+</div>
+
+<!-- top button end -->
+</template>
+
+<script setup lang="ts">
+import { UserFilled } from '@element-plus/icons-vue'
+</script>
+

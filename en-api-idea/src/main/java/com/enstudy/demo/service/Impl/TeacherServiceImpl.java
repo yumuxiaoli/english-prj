@@ -1,12 +1,13 @@
 package com.enstudy.demo.service.Impl;
 
-import cn.hutool.core.convert.*;
+
+
 import com.enstudy.demo.dao.TeacherMapper;
 import com.enstudy.demo.pojo.Teacher;
 import com.enstudy.demo.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 import java.util.*;
 
 @Service
@@ -41,9 +42,9 @@ public class TeacherServiceImpl {
      * @param teacher
      * @return
      */
-    @Transactional(rollbackFor = Exception.class) //默认RuntimeException回滚,修改为Exception
+
     public int insert(Teacher teacher) {
-        teacherMapper.forwardMove(null, teacher.getSort());//从插入位置开始后移一位
+
         Date now=new Date();
         teacher.setCreatedAt(now); //设置创建时间
         teacher.setUpdatedAt(now); //设置更新时间
@@ -57,7 +58,7 @@ public class TeacherServiceImpl {
      * @param id
      * @return
      */
-    public boolean ifNumberExists(Integer number, Integer id) {
+    public boolean ifNumberExists(String number, Integer id) {
         Teacher teacher=teacherMapper.selectByNumber(number);
         if(id==null)
             return teacher!=null;//新增时判断是否重复
@@ -78,16 +79,8 @@ public class TeacherServiceImpl {
      * @param map
      * @return
      */
-    @Transactional(rollbackFor = Exception.class) //默认RuntimeException回滚,修改为Exception
+
     public int update(HashMap map) {
-        int oldSort = Convert.toInt(map.get("oldSort"));//旧顺序
-        int newSort = Convert.toInt(map.get("sort"));//新顺序
-        if(oldSort< newSort){ //向后移
-            teacherMapper.backMove(oldSort+1, newSort);
-        }
-        if(oldSort> newSort){ //向前移
-            teacherMapper.forwardMove(oldSort-1, newSort);
-        }
         Date now=new Date();
         map.put("previousUpdatedAt",map.get("updatedAt"));//获取上次更新时间,在乐观锁中使用
         map.put("updatedAt",now); //设置本次更新时间

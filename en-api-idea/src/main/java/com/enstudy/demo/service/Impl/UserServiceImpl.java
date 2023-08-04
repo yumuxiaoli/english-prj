@@ -1,7 +1,9 @@
 package com.enstudy.demo.service.Impl;
 
 import com.enstudy.demo.dao.UserMapper;
+import com.enstudy.demo.pojo.M_User;
 import com.enstudy.demo.pojo.User;
+import com.enstudy.demo.util.MD5Util;
 import com.enstudy.demo.util.PageUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,5 +104,35 @@ public class UserServiceImpl {
         List<User> list = userMapper.listPageValidUser(param);
         PageUtil pageUtils = new PageUtil(list, param);
         return pageUtils;
+    }
+
+
+    public User login(String username, String password){
+        User user = userMapper.checkUser(username);
+        if(user!=null){
+            //将密码加密处理
+            String newPassword = MD5Util.md5(password,
+                    user.getSalt(),
+                    5);
+            //比较密码是否一致
+            if(user.getPassword().equals(newPassword)){
+                return user;//登录成功
+            }
+        }
+        //登录失败
+        return null;
+    };
+
+    public int register(User user){
+        Date now=new Date();
+        String salt = UUID.randomUUID().toString().replace("-","");
+        String newPassword = MD5Util.md5(user.getPassword(),salt,5);
+        user.setPassword(newPassword);
+        user.setSalt(salt);
+        user.setCreatedAt(now); //设置创建时间
+        user.setUpdatedAt(now); //设置更新时间
+        System.out.println(user);
+        int rows = userMapper.insertSelective(user);
+        return rows;
     }
 }

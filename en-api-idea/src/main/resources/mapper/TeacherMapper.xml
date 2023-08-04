@@ -4,12 +4,11 @@
 <mapper namespace="com.enstudy.demo.dao.TeacherMapper">
   <resultMap id="BaseResultMap" type="com.enstudy.demo.pojo.Teacher">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="image" jdbcType="VARCHAR" property="image" />
     <result column="image_size" jdbcType="INTEGER" property="imageSize" />
     <result column="introduce" jdbcType="VARCHAR" property="introduce" />
-    <result column="sort" jdbcType="INTEGER" property="sort" />
     <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
     <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
   </resultMap>
@@ -20,7 +19,6 @@
     image,
     image_size,
     introduce,
-    sort,
     created_at,
     updated_at
   </sql>
@@ -56,9 +54,6 @@
       <if test="introduce != null">
         introduce,
       </if>
-      <if test="sort != null">
-        sort,
-      </if>
       <if test="createdAt != null">
         created_at,
       </if>
@@ -71,7 +66,7 @@
         #{id,jdbcType=INTEGER},
       </if>
       <if test="number != null">
-        #{number,jdbcType=INTEGER},
+        #{number,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -84,9 +79,6 @@
       </if>
       <if test="introduce != null">
         #{introduce,jdbcType=VARCHAR},
-      </if>
-      <if test="sort != null">
-        #{sort,jdbcType=INTEGER},
       </if>
       <if test="createdAt != null">
         #{createdAt,jdbcType=TIMESTAMP},
@@ -104,7 +96,7 @@
         id = #{id,jdbcType=INTEGER},
       </if>
       <if test="number != null">
-        number = #{number,jdbcType=INTEGER},
+        number = #{number,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
@@ -117,9 +109,6 @@
       </if>
       <if test="introduce != null">
         introduce = #{introduce,jdbcType=VARCHAR},
-      </if>
-      <if test="sort != null">
-        sort = #{sort,jdbcType=INTEGER},
       </if>
       <if test="createdAt != null">
         created_at = #{createdAt,jdbcType=TIMESTAMP},
@@ -138,12 +127,11 @@
         t.name name,
         t.image_size imageSize,
         t.introduce introduce,
-        t.sort sort,
         DATE_FORMAT(t.`updated_at`, "%Y-%m-%d %H:%i:%s") as updatedAt
     FROM teacher t
     WHERE 1=1
     <if test="number!=null">
-      AND t.number = #{number}
+      AND t.number LIKE '%${number}%'
     </if>
     <if test="name!=null">
       AND t.name LIKE '%${name}%'
@@ -155,23 +143,6 @@
     t.id desc
   </select>
 
-  <update id="backMove">
-    update teacher
-    set sort=sort-1
-    where sort between #{oldValue} and #{newValue}
-  </update>
-
-  <update id="forwardMove">
-    update teacher
-    set sort=sort+1
-    where 1=1
-    <if test="newValue!=null">
-      AND sort &gt;= #{newValue}
-    </if>
-    <if test="oldValue!=null">
-      AND sort &lt;= #{oldValue}
-    </if>
-  </update>
   
   <delete id="deleteTeacherByIds">
     DELETE FROM teacher
@@ -181,7 +152,7 @@
     </foreach>
   </delete>
 
-  <select id="selectByNumber" parameterType="Integer" resultMap="BaseResultMap">
+  <select id="selectByNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from teacher
@@ -192,14 +163,12 @@
     select
     <include refid="Base_Column_List" />
     from teacher
-    where status='V' order by sort
   </select>
   
   <select id="listPageValidTeacher" parameterType="HashMap" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from teacher
-    where status='V' order by sort
   </select>
 
 </mapper>

@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 public class SearchTeacherByPageForm {
 	
     @Schema(description = "编号")
-    private Integer number;
+    private String number;
     
     @Schema(description = "姓名")
     private String name;

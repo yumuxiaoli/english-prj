@@ -1,6 +1,6 @@
 package com.enstudy.demo.service.Impl;
 
-import com.enstudy.demo.dao.M_UserDao;
+import com.enstudy.demo.dao.M_UserMapper;
 import com.enstudy.demo.pojo.M_User;
 import com.enstudy.demo.service.M_UserService;
 import com.enstudy.demo.util.MD5Util;
@@ -13,7 +13,7 @@ import java.util.HashMap;
 public class M_UserServiceImpl implements M_UserService {
 
     @Autowired
-    private M_UserDao userDao;
+    private M_UserMapper userDao;
 
     public HashMap searchUserSummary(Integer userId) {
         HashMap map = userDao.searchUserSummary(userId);

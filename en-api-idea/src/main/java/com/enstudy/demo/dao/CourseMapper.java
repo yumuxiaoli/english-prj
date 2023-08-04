@@ -33,19 +33,6 @@ public interface CourseMapper {
     public ArrayList<HashMap> listPageCourse(HashMap param);
 
     /**
-     * 显示顺序后移
-     * @param oldValue
-     * @param newValue
-     */
-    void backMove(@Param("oldValue") Integer oldValue, @Param("newValue") Integer newValue);
-
-    /**
-     * 显示顺序前移
-     * @param oldValue
-     * @param newValue
-     */
-    void forwardMove(@Param("oldValue") Integer oldValue, @Param("newValue") Integer newValue);
-    /**
      * 删除课程信息
      * @param ids
      * @return
