@@ -102,4 +102,5 @@ public class CourseServiceImpl {
         PageUtil pageUtils = new PageUtil(list, param);
         return pageUtils;
     }
+
 }

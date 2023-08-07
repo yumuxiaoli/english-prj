@@ -5,6 +5,7 @@
             mode="horizontal"
             :ellipsis="false"
             @select="handleSelect"
+            style="position: fixed;overflow: hidden;width: 100%;z-index: 9999"
         >
             <el-menu-item index="0">
                 LOGO
@@ -20,7 +21,7 @@
             </el-sub-menu>
             <el-sub-menu index="3">
                 <template #title>课程</template>
-                <el-menu-item index="3-1">视频</el-menu-item>
+                <el-menu-item index="3-1" @click="$router.push({ name: 'Course'})">视频</el-menu-item>
                 <el-menu-item index="3-2">文章</el-menu-item>
                 <el-menu-item index="3-3">老师</el-menu-item>
             </el-sub-menu>
@@ -35,25 +36,26 @@
                     </template>
                     <template #default>
                         <div
-                        class="demo-rich-conent"
-                        style="display: flex; gap: 16px; flex-direction: row"
-                        >
-                            <el-avatar :size="55"> user </el-avatar>
-                            <div style="display: flex; flex-direction: column;">
-                                <p>name:</p>
-                                <p>age:</p> 
-                            </div>
-                            
-                        <div>
-                           
+                            class="demo-rich-conent"
+                            style="display: flex; gap: 16px; justify-content: center; flex-direction: row"
+                            >
+                                <el-avatar :size="55"> user </el-avatar>
+                                <div style="display: flex; flex-direction: column">
+                                    <p>name:</p>
+                                    <p>age:</p> 
+                                </div>
                         </div>
-                        </div>
+                        <el-menu-item style="justify-content: center;" @click="$router.push({name:'User'})">
+                            个人中心
+                        </el-menu-item>
                     </template>
                 </el-popover>
                 <!-- </div> -->
             </el-menu-item>
         </el-menu>
-                
+        
+        <div style="height: 30px;"></div>
+
         <!-- middle -->
         <div class="home-middle-1">
             <el-row>
@@ -61,7 +63,7 @@
                     <div class="cx-1">
                         <el-carousel indicator-position="outside"  height="auto" autoplay>
                             <el-carousel-item style="height: auto;">
-                                <el-empty :image-size="300" image=""/>
+                                <el-empty :image-size="300" img=""/>
                             </el-carousel-item>
                         </el-carousel>
                     </div>

@@ -8,6 +8,7 @@
 
 .body{
     background-color: rgb(255, 254, 253);
+    flex-wrap: nowrap;
 }
 
 .tx_1{
@@ -58,6 +59,7 @@
 .home-foot{
     height: 200px;
     width: 100%;
+    padding-left: 300px;
     background-color: slategrey;
 }
 
@@ -96,3 +98,4 @@
   .flex-grow{
     flex-grow: 1;
 }
+

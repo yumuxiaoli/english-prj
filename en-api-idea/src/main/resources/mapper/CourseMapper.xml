@@ -26,6 +26,8 @@
     created_at,
     updated_at
   </sql>
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -146,6 +148,9 @@
     SELECT
         t.id id,
         t.name name,
+        t.introduce introduce,
+        t.details details,
+        t.image image,
         t.image_size imageSize,
         t.assort_id assortId,
         t.teacher_id teacherId,

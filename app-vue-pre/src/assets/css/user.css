@@ -1,19 +1,35 @@
 .user-con{
     display: flex;
     justify-content: center;
+    
 }
 
 .user-aside{
-    padding: 50px;
+    padding: 20px;
     width: 350px;
+   
 }
 
 .user-main{
     display: flex;
     justify-content: center;
-    padding: 50px;
+    padding: 20px;
+    font-size:16px;
+
 }
 
+.user-main-1 {
+    padding-top: 30px;
+    padding-left: 30px;
+}
+.us-1{
+    padding-top: 10px;
+    display: flex;
+}
+.us-2{
+    padding-bottom: 20px;
+    width: 120px;
+}
 /* .user-middle{
 
 } */
@@ -32,4 +48,8 @@ padding: 18px 0;
 
 .user-contain{
     padding: 10px;
+}
+
+.user-box-card{
+    background-color: #545c64;
 }

@@ -34,10 +34,10 @@ public class CourseController {
     @Operation(summary = "添加课程")
     public R insert(@Valid @RequestBody InsertCourseForm form) {
         Course course = JSONUtil.parse(form).toBean(Course.class);
-        if(!courseService.ifNameExists(form.getName(), null)) {
+        if (!courseService.ifNameExists(form.getName(), null)) {
             int rows = courseService.insert(course);
             return R.ok().put("rows", rows);
-        }else {
+        } else {
             return R.error("错误:课程名已存在");
         }
     }
@@ -60,21 +60,21 @@ public class CourseController {
     @Operation(summary = "更新课程")
     public R update(@Valid @RequestBody UpdateCourseForm form) {
         HashMap param = JSONUtil.parse(form).toBean(HashMap.class);
-        if(!courseService.ifNameExists(form.getName(), form.getId())) {
+        if (!courseService.ifNameExists(form.getName(), form.getId())) {
             int rows = courseService.update(param);
             return R.ok().put("rows", rows);
-        }else {
+        } else {
             return R.error("错误:课程名已存在");
         }
     }
-    
+
     @GetMapping("/listValidCourse")
     @Operation(summary = "查询有效课程")
     public R searchValidCourse() {
-        List<Course> dataList =  courseService.listValidCourse();
+        List<Course> dataList = courseService.listValidCourse();
         return R.ok().put("dataList", dataList);
     }
-    
+
     @PostMapping("/listPageValidCourse")
     @Operation(summary = "查询当前页有效课程")
     public R searchPageValidCourse(@Valid @RequestBody SearchFrontByPageForm form) {
@@ -82,4 +82,5 @@ public class CourseController {
         PageUtil pageUtils = courseService.listPageValidCourse(param);
         return R.ok().put("page", pageUtils);
     }
+
 }

@@ -56,4 +56,5 @@ public interface CourseMapper {
      * @return
      */
     List<Course> listPageValidCourse(HashMap map);
+
 }

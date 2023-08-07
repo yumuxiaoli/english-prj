@@ -25,14 +25,26 @@ const routes = [
 		path: '/recite',
 		name: 'Recite',
 		component: () => import('../views/recite.vue'),
-	},{
+	},
+	{
 		path: '/excise',
 		name: 'Excise',
-		component:() => import('../views/excise.vue'),	
-	},{
+		component:() => import('../views/excise.vue')
+	},
+	{
 		path: '/user',
 		name: 'User',
 		component:() => import('../views/user.vue')
+	},
+	{
+		path: '/course',
+		name: 'Course',
+		component:() => import('../views/course.vue')
+	},
+	{
+		path: '/details',
+		name: 'Details',
+		component:() => import('../views/details.vue')
 	},
 	{
 		path: '/login',

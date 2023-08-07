@@ -9,6 +9,7 @@ import com.enstudy.demo.pojo.Words;
 import com.enstudy.demo.service.Impl.UserServiceImpl;;
 
 import com.enstudy.demo.service.Impl.WordsServiceImpl;
+import com.enstudy.demo.util.PageUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +65,13 @@ public class EnglishController {
         StpUtil.logout();
         return R.ok();
     }
+
+//    @GetMapping("/excise")
+//    @Operation(summary = "练习")
+//    public R excise(@Valid @RequestBody SearchWordsByPageForm form){
+//        HashMap param = JSONUtil.parse(form).toBean(HashMap.class);
+//        PageUtil pageUtils = wordsService.listWordsByPage(param);
+//        return R.ok().put("page", pageUtils);
+//    }
 
 }

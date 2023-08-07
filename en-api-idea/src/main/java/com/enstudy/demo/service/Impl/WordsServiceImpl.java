@@ -113,4 +113,15 @@ public class WordsServiceImpl {
         Words words = wordsMapper.randWords(word);
         return words;
     }
+
+//    /**
+//     * 练习返回选项
+//     * @param param
+//     * @return
+//     */
+//    public PageUtil excise(HashMap param) {
+//        ArrayList<HashMap> list = wordsMapper.listPageWords(param);
+//        PageUtil pageUtils = new PageUtil(list, param);
+//        return pageUtils;
+//    }
 }

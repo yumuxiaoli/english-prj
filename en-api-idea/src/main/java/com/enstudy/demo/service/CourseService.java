@@ -26,4 +26,5 @@ public interface CourseService {
     public List<Course> listValidCourse();
 
     public PageUtil listPageValidCourse(HashMap param);
+
 }

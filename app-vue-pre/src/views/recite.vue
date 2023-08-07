@@ -5,6 +5,7 @@
             mode="horizontal"
             :ellipsis="false"
             @select="handleSelect"
+            style="position: fixed;overflow: hidden;width: 100%;z-index: 9999"
         >
             <el-menu-item index="0">
                 LOGO
@@ -19,10 +20,10 @@
                 <el-menu-item index="2-2" @click="$router.push({ name: 'Excise' })">测试</el-menu-item>
             </el-sub-menu>
             <el-sub-menu index="3">
-                <template #title>Workspace</template>
-                <el-menu-item index="3-1">item one</el-menu-item>
-                <el-menu-item index="3-2">item two</el-menu-item>
-                <el-menu-item index="3-3">item three</el-menu-item>
+                <template #title>课程</template>
+                <el-menu-item index="3-1" @click="$router.push({ name: 'Course'})">视频</el-menu-item>
+                <el-menu-item index="3-2">文章</el-menu-item>
+                <el-menu-item index="3-3">老师</el-menu-item>
             </el-sub-menu>
             <el-menu-item class="img-head">
                 <!-- <div> -->
@@ -35,42 +36,44 @@
                     </template>
                     <template #default>
                         <div
-                        class="demo-rich-conent"
-                        style="display: flex; gap: 16px; flex-direction: row"
-                        >
-                            <el-avatar :size="55"> user </el-avatar>
-                            <p>name:</p>
-                            <p>age:</p>
-                        <div>
-                           
+                            class="demo-rich-conent"
+                            style="display: flex; gap: 16px; justify-content: center; flex-direction: row"
+                            >
+                                <el-avatar :size="55"> user </el-avatar>
+                                <div style="display: flex; flex-direction: column">
+                                    <p>name:</p>
+                                    <p>age:</p> 
+                                </div>
                         </div>
-                        </div>
+                        <el-menu-item style="justify-content: center;" @click="$router.push({name:'User'})">
+                            个人中心
+                        </el-menu-item>
                     </template>
                 </el-popover>
                 <!-- </div> -->
             </el-menu-item>
         </el-menu>
 
+       
+        <div style="height: 30px;"></div>
         <!-- word-card -->
         <div class="recite-middle">
             <div class="recite-card">
                 <el-card class="box-card">
                     <template #header>
                     <div class="card-header">
-                        <span>Card name</span>
-                        <el-button class="button" text>Operation button</el-button>
+                        <span>单词背诵</span>
+                        <el-button class="button" text>四级</el-button>
                     </div>
                     </template>
-                        <div v-for="o in 20" :key="o" class="text item">
-                            <el-collapse v-model="activeNames" @change="handleChange">
-                                <el-collapse-item title="Consistency" name="1">
+                        <div v-for="item in dataList" :key="item" class="text item">
+                            <el-collapse>
+                                <el-collapse-item  :title="item.words"  name="{{(pageIndex - 1) * pageSize + scope.$index + 1}} ">
                                     <div>
-                                    Consistent with real life: in line with the process and logic of real
-                                    life, and comply with languages and habits that the users are used to;
+                                        音标 :{{ item.pron}}
                                     </div>
                                     <div>
-                                    Consistent within interface: all elements should be consistent, such
-                                    as: design style, icons and texts, position of elements, etc.
+                                        解释 :{{ item.explains}}
                                     </div>
                                 </el-collapse-item>
                             </el-collapse>
@@ -78,7 +81,16 @@
                 </el-card>
             </div>     
         </div>
-            
+        <el-pagination
+			@size-change="sizeChangeHandle"
+			@current-change="currentChangeHandle"
+			:current-page="pageIndex"
+			:page-sizes="[5, 10, 20]"
+			:page-size="pageSize"
+			:total="totalCount"
+			layout="total, sizes, prev, pager, next, jumper"
+		></el-pagination>	
+
         <div>
         
         </div>
@@ -96,8 +108,81 @@
 </template>
 
 <script setup>   
-    import { ref } from 'vue'
-    const checkedCities = ref([''])
-    const cities = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen']
+    import { ref, reactive } from 'vue'
+    import { post, get, handleResponse } from '../utils/request.js'
+    import { ElMessage, ElMessageBox } from 'element-plus'
+    import { ifEmpty } from '../utils/tool.js'
+    const showEffect = () => { //封装显示操作, 包含数据显示功能: 加载数据列表、查询、分页显示功能
+    // 数据
+    const pageIndex = ref(1) //页码
+    const pageSize = ref(10) //每页条数
+    const totalCount = ref(0) //总条数
+    const dataLoading = ref(false) //加载列表
+    const dataList = ref([]) //数据列表
+    const df = ref(null) // 获得页面的查询表单，对应页面的<el-form ...... ref="df">
 
+        // 方法
+    const dataForm = reactive({ //查询表单
+        words: null,
+        orderType: "ascending", //排序类型: descending|ascending //排序字段名，对应的是prop属性
+    })
+    const loadDataList = async () => { //加载数据列表
+        dataLoading.value = true;
+        const data = { // 每次加载数据发送的数据对象,对应分页数据和查询数据
+            page: pageIndex.value,
+            length: pageSize.value,
+            words: ifEmpty(dataForm.words),
+            orderType: dataForm.orderType,
+            orderColumn: null,
+        };
+        await post('words/listWordsByPage', data).then((resp) => {
+            handleResponse({resp, dataLoading},
+            () => {
+                const page = resp.data.page;
+                dataList.value = page.list;
+                totalCount.value = page.totalCount;
+                return dataList
+            }
+            )
+        })
+
+    }
+    const currentChangeHandle = (val) => { //分页导航 每次值改变就去请求接口
+        pageIndex.value = val
+        loadDataList()
+    }
+    const sizeChangeHandle = (val) => { //更改每页显示记录数量后，都从第一页开始查询
+        pageSize.value = val;
+        pageIndex.value = 1;
+        loadDataList();
+    }
+    const searchHandle = () => { //查询
+        df.value.validate(valid => { //先执行表单验证
+        if (valid) {
+            df.value.clearValidate();//清理页面上的表单验证结果
+            dataForm.words = ifEmpty(dataForm.words)//因为服务器端进行正则验证，不允许上传空字符串给后端，但是可以传null值，
+            if (pageIndex.value != 1) { //如果当前页面不是第一页，则跳转到第一页显示查询的结果
+                pageIndex.value = 1;
+            }
+            loadDataList();
+        } else {
+            return false;
+        }
+        });
+    }
+    return { pageIndex, pageSize, totalCount, dataList, loadDataList, currentChangeHandle, dataForm, dataLoading, sizeChangeHandle, searchHandle, df }
+    }
+    const validatorRule = () => { //封装客户端数据验证规则
+    const dataRule = ref('');
+    dataRule.value = {
+        words: [
+            { required: false, message: "单词格式错误", trigger: "blur" },
+            { whitespace: true, message: "单词格式错误", trigger: "blur" }
+        ],
+    }
+    return { dataRule }
+    }
+    const { pageIndex, pageSize, totalCount, dataList, loadDataList, currentChangeHandle, dataForm, dataLoading, sizeChangeHandle, searchHandle, df} = showEffect()
+    const { dataRule } = validatorRule()
+    loadDataList();
 </script>
