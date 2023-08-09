@@ -129,7 +129,6 @@
     t.id desc
   </select>
 
-  
   <delete id="deleteWordsByIds">
     DELETE FROM words
     WHERE id IN
@@ -158,6 +157,8 @@
     from words
     where status='V' 
   </select>
+
+
 
   <select id="randWords" parameterType="java.lang.String" resultType="java.lang.String">
     select

@@ -82,4 +82,11 @@ public class ExciseController {
         PageUtil pageUtils = exciseService.listPageValidExcise(param);
         return R.ok().put("page", pageUtils);
     }
+
+    @GetMapping("/questionlist")
+    @Operation(summary = "问题列表")
+    public R questionList(){
+        ArrayList<HashMap> page = exciseService.questionlist();
+        return R.ok().put("page", page);
+    }
 }

@@ -88,4 +88,6 @@ public class WordsController {
         ArrayList<String> list = wordsService.randWords(form.getWords());
         return  R.ok().put("data",list);
     }
+
+
 }

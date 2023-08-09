@@ -159,6 +159,7 @@
         t.title title,
         t.rightAnswer rightanswer,
         t.selecta selecta,
+        t.selectb selectb,
         t.selectc selectc,
         t.selectd selectd,
         DATE_FORMAT(t.`updated_at`, "%Y-%m-%d %H:%i:%s") as updatedAt
@@ -174,7 +175,19 @@
     t.id desc
   </select>
 
-  
+  <select id="questionList" resultType="HashMap">
+    SELECT
+      id,
+        title,
+      rightanswer,
+      selecta,
+      selectb,
+      selectc,
+      selectd
+    FROM excise;
+  </select>
+
+
   <delete id="deleteExciseByIds">
     DELETE FROM excise
     WHERE id IN

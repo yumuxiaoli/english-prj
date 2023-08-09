@@ -55,4 +55,6 @@ public interface ExciseMapper {
      * @return
      */
     List<Excise> listPageValidExcise(HashMap map);
+
+    public ArrayList<HashMap> questionList();
 }
