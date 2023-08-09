@@ -1,0 +1,64 @@
+.dta-middle{
+    display: flex;
+    margin: 100px;
+    margin-top: 50px ;
+    margin-bottom: 20px ;
+    background-color:steelblue;
+    height: 550px;
+}
+
+.dta-middle-1{
+    margin: 50px;
+    margin-left: 0 ;
+    margin-bottom: 20px;
+}
+
+.detail-title{
+    margin: 50px;
+}
+
+.detail-space{
+    height: 50px;
+    background-color: brown;
+}
+
+.detail-middle-1{
+    height: 500px;
+    
+}
+
+.dta-title{
+    padding-left: 30px;
+    margin: 100px;
+    margin-top: 50px ;
+}
+
+.dta-video{
+    padding: 50px;
+    display: flex;
+    /* flex-direction: row; */
+    
+}
+
+
+.dta-list{
+    background-color: darkcyan;
+}
+
+.tea-right{
+   display: flex;
+   flex-direction: column;
+   margin: 50px;
+}
+
+.tea-name{
+    padding: 50px;
+    padding-bottom:0 ;
+}
+
+.tea-txt{
+    background-color: blueviolet;
+    padding: 50px;
+    width: 600px;
+}
+

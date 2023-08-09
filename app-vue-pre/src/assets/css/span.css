@@ -1,0 +1,9 @@
+.span-middle{
+    padding: 5px;
+}
+.span-card{
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+    

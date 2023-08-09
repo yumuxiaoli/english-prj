@@ -96,6 +96,15 @@ const routes = [
 					title: "视频管理",
 					isTab: true
 				}
+			},
+			{
+				path: "/excise",
+				name: "Excise",
+				component: () => import('../views/excise.vue'),
+				meta: {
+					title: "练习管理",
+					isTab: true
+				}
 			}
 		]
 	},

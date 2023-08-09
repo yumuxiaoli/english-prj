@@ -60,6 +60,9 @@
 						<el-menu-item index="1-7"
 						@click="$router.push({ name: 'Video' })">
 						视频管理</el-menu-item>
+						<el-menu-item index="1-8"
+						@click="$router.push({ name: 'Excise' })">
+						练习</el-menu-item>
 					</el-sub-menu>
 				</el-menu>
 			</div>
