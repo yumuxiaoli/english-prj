@@ -1,11 +1,11 @@
 
 			,
 			{
-				path: "/words",
-				name: "Words",
-				component: () => import('../views/tf/words.vue'),
+				path: "/excise",
+				name: "Excise",
+				component: () => import('../views/tf/excise.vue'),
 				meta: {
-					title: "单词管理",
+					title: "练习管理",
 					isTab: true
 				}
 			}

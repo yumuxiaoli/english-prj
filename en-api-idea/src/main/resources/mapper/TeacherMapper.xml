@@ -125,6 +125,7 @@
         t.id id,
         t.number number,
         t.name name,
+        t.image image,
         t.image_size imageSize,
         t.introduce introduce,
         DATE_FORMAT(t.`updated_at`, "%Y-%m-%d %H:%i:%s") as updatedAt

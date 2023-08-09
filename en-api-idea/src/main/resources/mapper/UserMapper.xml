@@ -158,6 +158,7 @@
         t.id id,
         t.username username,
         t.nickname nickname,
+        t.image image,
         t.image_size imageSize,
         t.email email,
         t.phone phone,
@@ -206,4 +207,15 @@
     select * from user where username = #{username};
   </select>
 
+  <select id="searchUserSummary" resultType="HashMap">
+    select username,image,nickname
+    from user
+    where id=#{userId}
+  </select>
+
+  <update id="updatePassword" parameterType="HashMap">
+    UPDATE user
+    SET password= #{password},salt = #{salt}
+    WHERE id = #{userId}
+  </update>
 </mapper>

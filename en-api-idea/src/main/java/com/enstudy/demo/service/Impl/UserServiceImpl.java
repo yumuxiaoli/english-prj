@@ -16,6 +16,11 @@ public class UserServiceImpl {
     @Autowired
     private UserMapper userMapper;
 
+    public HashMap searchUserSummary(Integer userId) {
+        HashMap map = userMapper.searchUserSummary(userId);
+        return map;
+    }
+
     /**
      * 查询当前页的学生信息
      * @param param
@@ -133,6 +138,11 @@ public class UserServiceImpl {
         user.setUpdatedAt(now); //设置更新时间
         System.out.println(user);
         int rows = userMapper.insertSelective(user);
+        return rows;
+    }
+
+    public int updatePassword(HashMap param) {
+        int rows=userMapper.updatePassword(param);
         return rows;
     }
 }

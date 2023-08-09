@@ -13,10 +13,10 @@ import java.util.HashMap;
 public class M_UserServiceImpl implements M_UserService {
 
     @Autowired
-    private M_UserMapper userDao;
+    private M_UserMapper userMapper;
 
     public HashMap searchUserSummary(Integer userId) {
-        HashMap map = userDao.searchUserSummary(userId);
+        HashMap map = userMapper.searchUserSummary(userId);
         return map;
     }
 //    @Override
@@ -28,7 +28,7 @@ public class M_UserServiceImpl implements M_UserService {
 //    }
     @Override
     public M_User login(String username, String password){
-        M_User user = userDao.checkUser(username);
+        M_User user = userMapper.checkUser(username);
         if(user!=null){
             //将密码加密处理
             String newPassword = MD5Util.md5(password,

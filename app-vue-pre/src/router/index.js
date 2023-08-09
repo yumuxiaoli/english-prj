@@ -35,6 +35,10 @@ const routes = [
 		path: '/user',
 		name: 'User',
 		component:() => import('../views/user.vue')
+	},{
+		path: '/update-password',
+		name: 'Update-password',
+		component:() => import('../views/update-password.vue')
 	},
 	{
 		path: '/course',
@@ -42,9 +46,19 @@ const routes = [
 		component:() => import('../views/course.vue')
 	},
 	{
+		path: '/teacher',
+		name: 'Teacher',
+		component:() => import('../views/teacher.vue')		
+	},
+	{
 		path: '/details',
 		name: 'Details',
 		component:() => import('../views/details.vue')
+	},
+	{
+		path: '/span',
+		name: 'Span',
+		component:() => import('../views/span.vue')
 	},
 	{
 		path: '/login',

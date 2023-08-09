@@ -109,9 +109,9 @@ public class WordsServiceImpl {
      * 随机查询单词翻译
      * @return
      */
-    public Words randWords(String word){
-        Words words = wordsMapper.randWords(word);
-        return words;
+    public ArrayList<String> randWords(String word){
+        ArrayList<String> list = wordsMapper.randWords(word);
+        return list;
     }
 
 //    /**

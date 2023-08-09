@@ -58,4 +58,8 @@ public interface UserMapper {
     List<User> listPageValidUser(HashMap map);
 
     User checkUser(String username);
+
+    public HashMap searchUserSummary(Integer userId);
+
+    public int updatePassword(HashMap param);
 }

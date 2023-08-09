@@ -4,7 +4,7 @@
 			<el-form-item prop="name">
 				<el-input
 					v-model="dataForm.name"
-					placeholder="职位名称" size="default"
+					placeholder="分类名称" size="default"
 					class="input" clearable="clearable"
 					@blur="searchHandle()" @keyup.enter.native="$event.target.blur()"
 			    />

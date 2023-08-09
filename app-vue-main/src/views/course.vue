@@ -126,6 +126,7 @@ const showEffect = () => { //封装显示操作, 包含数据显示功能: 加�
           }
         )
       })
+
   }
   const currentChangeHandle = (val) => { //分页导航 每次值改变就去请求接口
     pageIndex.value = val

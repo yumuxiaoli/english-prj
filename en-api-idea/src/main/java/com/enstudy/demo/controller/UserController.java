@@ -1,5 +1,6 @@
 package com.enstudy.demo.controller;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.json.JSONUtil;
 import com.enstudy.demo.controller.form.*;
 import com.enstudy.demo.dto.R;
@@ -73,5 +74,14 @@ public class UserController {
         HashMap param = JSONUtil.parse(form).toBean(HashMap.class);
         PageUtil pageUtils = userService.listPageValidUser(param);
         return R.ok().put("page", pageUtils);
+    }
+
+    @GetMapping("/loadUser")
+    @Operation(summary = "登陆成功后加载用户的基本信息")
+    public R loadUserInfo() {
+        int userId = StpUtil.getLoginIdAsInt();//获取当前用户的id
+        HashMap summary = userService.searchUserSummary(userId);
+        System.out.println(summary);
+        return R.ok(summary);
     }
 }

@@ -9,7 +9,7 @@
       v-loading.fullscreen.lock="dataLoading"
       element-loading-text="数据上传中..."
     >
-			<el-form-item label="职位名称:" prop="name" >
+			<el-form-item label="分类名称:" prop="name" >
 				<el-input v-model="dataForm.name"  size="default" style="width:100%" clearable />
 			</el-form-item>
 			<el-form-item label="状态类型:" prop="status" >

@@ -46,14 +46,74 @@
     height: 50px;
     background-color: brown;
 }
-.home-middle-2,
-.home-middle-3{
+.home-middle-2{
     background-color: #475669;
     margin-top: 20px;
-    height: 600px;
+    height: 300px;
     padding-left: 100px;
     padding-left: 100px;
     margin: 50px;
+}
+
+.home-middle-3{
+    background-color: #475669;
+    margin-top: 20px;
+    height: 400px;
+    padding-left: 100px;
+    padding-left: 100px;
+    margin: 50px;
+}
+
+.ho-1{
+    display: flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    overflow:hidden;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.ho-2{
+    display: flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    overflow:hidden;
+    height: 400px;
+    justify-content: center;
+    align-items: center;
+}
+
+.hom-li-1{
+
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    width: 300px;
+    padding: 30px;
+    margin: 10px;
+    justify-content: center;
+}
+.hom-li-2{
+
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    width: 260px;
+    padding: 30px;
+    margin: 10px;
+    justify-content: center;
+}
+.ho-li-1{
+    overflow: hidden;
+    width: 100%;
+    height: 250px;
+}
+.ho-li-2{
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
 }
 
 .home-foot{
@@ -76,7 +136,11 @@
 }
 
 .cx-2{
+    width: 100%;
     padding-top: 50px ;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .el-carousel__item h3 {
@@ -98,4 +162,3 @@
   .flex-grow{
     flex-grow: 1;
 }
-

@@ -21,5 +21,5 @@ public interface WordsService {
 
     public PageUtil listPageValidWords(HashMap param);
 
-    public Words randwords(String word);
+    public ArrayList<String> randwords(String word);
 }

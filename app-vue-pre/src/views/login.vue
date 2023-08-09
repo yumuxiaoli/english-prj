@@ -82,7 +82,7 @@ const useLoginEffect = () => { // 封装登录逻辑
 		  if (resp.data.result) {
 			const token = cookies.get('token')
 			console.log(token)
-		localStorage.setItem('token', token);
+			localStorage.setItem('token', token);
         router.push({ name: 'Home'});
 		  } else {
 			  ElMessage({ message: '登陆失败', type: 'error', offset: 200, duration: 1200 });

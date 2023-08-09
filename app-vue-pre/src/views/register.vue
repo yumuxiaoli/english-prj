@@ -1,5 +1,5 @@
 <template>
-    	<div class="page">
+  <div class="page">
 		<el-row type="flex" justify="center" align="middle" class="container">
 			<el-col :lg="14" :xl="10" class="hidden-md-and-down">
 				<el-row class="panel">

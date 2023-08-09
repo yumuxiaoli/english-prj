@@ -159,9 +159,9 @@
     where status='V' 
   </select>
 
-  <select id="randWords" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="randWords" parameterType="java.lang.String" resultType="java.lang.String">
     select
-    <include refid="Base_Column_List" />
+    explains
     from words
     as a1
     join (
@@ -169,8 +169,7 @@
     ) as a2
     where words != #{words,jdbcType=VARCHAR}  and
         a1.id >= a2.id
-    order by a1.id asc LIMIT 50;
-
+    order by a1.id asc LIMIT 3;
 
   </select>
 

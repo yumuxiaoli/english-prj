@@ -1,14 +1,17 @@
 package com.enstudy.demo.controller;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.json.JSONUtil;
 import com.enstudy.demo.controller.form.*;
+import com.enstudy.demo.dao.UserMapper;
 import com.enstudy.demo.dto.R;
 import com.enstudy.demo.pojo.User;
 import com.enstudy.demo.pojo.Words;
 import com.enstudy.demo.service.Impl.UserServiceImpl;;
 
 import com.enstudy.demo.service.Impl.WordsServiceImpl;
+import com.enstudy.demo.util.MD5Util;
 import com.enstudy.demo.util.PageUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -29,16 +32,16 @@ public class EnglishController {
     private UserServiceImpl userService;
     private WordsServiceImpl wordsService;
 
+
     @PostMapping("login")
     @Operation(summary = "登陆系统")
     public R login(@Valid @RequestBody LoginForm form
-            , HttpSession session
             , RedirectAttributes redirectAttributes) {
         User user = userService.login(form.getUsername(), form.getPassword());
         R r=R.ok().put("result", user!=null?true:false);
         if (user != null) {
             user.setPassword(null);
-            session.setAttribute("User", user);
+            StpUtil.login(user.getId());
             return r;
         } else {
             //model.addAttribute("msg","密码或用户名错误");
@@ -57,6 +60,21 @@ public class EnglishController {
         }else {
             return R.error("错误:昵称已存在");
         }
+    }
+    @PostMapping("/updatePassword")
+    @SaCheckLogin // 检查是否登录过
+    @Operation(summary = "修改密码")
+    public R updatePassword(@Valid @RequestBody UpdatePasswordForm form,User user) {
+        int userId = StpUtil.getLoginIdAsInt();
+        String salt = UUID.randomUUID().toString().replace("-","");
+        String newPassword = MD5Util.md5(form.getPassword(),salt,5);
+        HashMap param = new HashMap() {{
+            put("userId", userId);
+            put("password", newPassword);
+            put("salt",salt);
+        }};
+        int rows = userService.updatePassword(param);
+        return R.ok().put("rows", rows);
     }
 
     @GetMapping("/logout")

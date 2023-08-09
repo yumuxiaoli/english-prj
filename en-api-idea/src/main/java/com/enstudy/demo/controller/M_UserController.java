@@ -29,14 +29,12 @@ public class M_UserController {
     @PostMapping("login")
     @Operation(summary = "登陆系统")
     public R login(@Valid @RequestBody LoginForm form
-            , HttpSession session
             , RedirectAttributes redirectAttributes) {
         M_User user = userService.login(form.getUsername(), form.getPassword());
         R r=R.ok().put("result", user!=null?true:false);
         if (user != null) {
             user.setPassword(null);
-            session.setAttribute("User", user);
-            System.out.println(r);
+            StpUtil.login(user.getId());
             return r;
         } else {
             //model.addAttribute("msg","密码或用户名错误");

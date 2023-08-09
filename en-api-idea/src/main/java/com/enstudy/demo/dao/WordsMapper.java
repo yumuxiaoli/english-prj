@@ -61,5 +61,5 @@ public interface WordsMapper {
      * 随机查询单词翻译
      * @return
      */
-    Words randWords(String words);
+    public ArrayList<String> randWords(String words);
 }

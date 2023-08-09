@@ -20,15 +20,23 @@
 
 .user-main-1 {
     padding-top: 30px;
-    padding-left: 30px;
+    padding-left: 50px;
+}
+
+.user-upwd{
+    padding: 100px;
 }
 .us-1{
     padding-top: 10px;
     display: flex;
+    align-items: center;
+    padding-bottom:20px ;
 }
 .us-2{
-    padding-bottom: 20px;
-    width: 120px;
+    width: 60px;
+}
+.us-3{
+    width: 60px;
 }
 /* .user-middle{
 
@@ -52,4 +60,8 @@ padding: 18px 0;
 
 .user-box-card{
     background-color: #545c64;
+}
+
+.dialog-foote{
+    justify-content: middle;
 }

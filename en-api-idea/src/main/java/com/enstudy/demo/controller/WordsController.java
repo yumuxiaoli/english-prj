@@ -85,7 +85,7 @@ public class WordsController {
     @GetMapping("/recite")
     @Operation(summary = "随机取出单词")
     public R recite(@Valid  ReciteForm form){
-        Words word = wordsService.randWords(form.getWords());
-        return  R.ok().put("data",word);
+        ArrayList<String> list = wordsService.randWords(form.getWords());
+        return  R.ok().put("data",list);
     }
 }

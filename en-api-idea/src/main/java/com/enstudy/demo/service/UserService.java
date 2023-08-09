@@ -6,6 +6,8 @@ import com.enstudy.demo.util.PageUtil;
 import java.util.*;
 
 public interface UserService {
+
+    public HashMap searchUserSummary(Integer userId);
     public PageUtil listUserByPage(HashMap param) ;
 
     public int deleteUserByIds(Integer[] ids) ;
@@ -25,4 +27,6 @@ public interface UserService {
     public User login(String username, String password);
 
     public int register(User user);
+
+    public int updatePassword(HashMap param);
 }
