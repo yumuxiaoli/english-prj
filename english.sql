@@ -11,7 +11,7 @@
  Target Server Version : 80028
  File Encoding         : 65001
 
- Date: 07/08/2023 15:10:32
+ Date: 09/08/2023 14:39:19
 */
 
 SET NAMES utf8mb4;
@@ -29,12 +29,15 @@ CREATE TABLE `assort`  (
   `updated_at` datetime NULL DEFAULT NULL COMMENT '修改时间|列表字段|date',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `unq_name`(`name` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '分类' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '分类' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of assort
 -- ----------------------------
 INSERT INTO `assort` VALUES (1, '阅读', 'V', '2023-07-27 19:50:49', '2023-07-27 19:50:49');
+INSERT INTO `assort` VALUES (3, '听力', 'V', '2023-08-07 16:38:26', '2023-08-07 16:38:26');
+INSERT INTO `assort` VALUES (4, '写作', 'V', '2023-08-07 16:38:41', '2023-08-07 16:38:41');
+INSERT INTO `assort` VALUES (5, '改错', 'V', '2023-08-07 16:40:11', '2023-08-07 16:40:11');
 
 -- ----------------------------
 -- Table structure for course
@@ -60,6 +63,31 @@ CREATE TABLE `course`  (
 -- ----------------------------
 INSERT INTO `course` VALUES (1, '阅读1', '<p>无</p>', '<p>无</p>', 'http://ryalk03vf.hn-bkt.clouddn.com/1.png', 69636, 1, 1, '2023-07-31 08:56:20', '2023-07-31 08:56:20');
 INSERT INTO `course` VALUES (2, 'coure', '<p>无</p>', '<p>无</p>', 'http://ryalk03vf.hn-bkt.clouddn.com/1.png', 69636, 1, 1, '2023-08-01 14:24:19', '2023-08-01 14:24:19');
+
+-- ----------------------------
+-- Table structure for excise
+-- ----------------------------
+DROP TABLE IF EXISTS `excise`;
+CREATE TABLE `excise`  (
+  `id` int(10) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT '主键|列表字段|input',
+  `title` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '题目|唯一|列表字段|查询字段|input',
+  `questionType` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '题型|input',
+  `rightAnswer` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '正确答案|列表字段|input',
+  `selecta` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '选项A|列表字段|input',
+  `selectb` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '选项B|列表子段|input',
+  `selectc` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '选项C|列表字段|input',
+  `selectd` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '选项D|列表字段|input',
+  `exlog` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0' COMMENT '日志',
+  `created_at` datetime NULL DEFAULT NULL COMMENT '创建时间',
+  `updated_at` datetime NULL DEFAULT NULL COMMENT '修改时间|列表字段|date',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `unq_title`(`title` ASC) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '练习' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of excise
+-- ----------------------------
+INSERT INTO `excise` VALUES (0000000001, 'error', '单选', 'A', '异常、错误', '举起', '正确', '最后', '0', '2023-08-09 10:36:44', '2023-08-09 10:37:32');
 
 -- ----------------------------
 -- Table structure for m_user
@@ -145,8 +173,7 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'xiaoyu', 'yumu', '', '', NULL, NULL, '2816083598@qq.com', '1312312', '2023-07-27 11:13:19', NULL);
-INSERT INTO `user` VALUES (2, 'yumu', 'xiaoyu', '17f2d694f528d57a81e14133f2b339b2', '5039fcdd7208499a9ecdfb3af4603246', 'http://ryalk03vf.hn-bkt.clouddn.com/1.png', 69636, '12312@we.com', '17667336538', '2023-07-31 15:13:40', '2023-07-31 15:13:40');
+INSERT INTO `user` VALUES (1, 'yumu', 'xiaoyu', 'db722b239e05484f35c5466bd4a908bc', '25ddb3911e0b40e69621fb736b3a11fb', 'http://ryalk03vf.hn-bkt.clouddn.com/1.png', 69636, '12312@we.com', '17667336538', '2023-07-31 15:13:40', '2023-07-31 15:13:40');
 
 -- ----------------------------
 -- Table structure for video

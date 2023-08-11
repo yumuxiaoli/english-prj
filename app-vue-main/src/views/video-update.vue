@@ -48,7 +48,7 @@ import { post, get, multiStrictGet, handleResponse } from '../utils/request.js'
 import { validateFileSize, validateSort } from '../utils/validate.js'
 import FrontUpload from '../components/FrontUpload.vue'
 const videoUploadEffect = (dataForm) => { // 封装文件上传逻辑
-  const videoFormat = ref('.gif, .png, .jpeg, .jpg')
+  const videoFormat = ref('.mp4')
   //const videoFormat = ref('.exe, .zip, .rar, .pdf, .docx, .xlsx, .ppt')
   //const videoFormat = ref('.mp4')
   const setVideoInfo = (data) => { //设置资源成功上传后的信息

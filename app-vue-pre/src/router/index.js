@@ -51,7 +51,7 @@ const routes = [
 		component:() => import('../views/teacher.vue')		
 	},
 	{
-		path: '/details',
+		path: '/details/:name',
 		name: 'Details',
 		component:() => import('../views/details.vue')
 	},
@@ -89,7 +89,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-	if (to.name != "Login") { // 不是登录页面
+	if (to.name != "Login" ) { // 不是登录页面
 		let token = localStorage.getItem("token")
 		let avtivity_time =parseInt(localStorage.getItem("activity_time"));
 		let now_time = parseInt(new Date().getTime()/1000);

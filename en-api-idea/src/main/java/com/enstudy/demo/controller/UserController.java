@@ -34,10 +34,10 @@ public class UserController {
     @Operation(summary = "添加学生")
     public R insert(@Valid @RequestBody InsertUserForm form) {
         User user = JSONUtil.parse(form).toBean(User.class);
-        if(!userService.ifNicknameExists(form.getNickname(), null)) {
+        if (!userService.ifNicknameExists(form.getNickname(), null)) {
             int rows = userService.insert(user);
             return R.ok().put("rows", rows);
-        }else {
+        } else {
             return R.error("错误:昵称已存在");
         }
     }
@@ -53,21 +53,21 @@ public class UserController {
     @Operation(summary = "更新学生")
     public R update(@Valid @RequestBody UpdateUserForm form) {
         HashMap param = JSONUtil.parse(form).toBean(HashMap.class);
-        if(!userService.ifNicknameExists(form.getNickname(), form.getId())) {
+        if (!userService.ifNicknameExists(form.getNickname(), form.getId())) {
             int rows = userService.update(param);
             return R.ok().put("rows", rows);
-        }else {
+        } else {
             return R.error("错误:昵称已存在");
         }
     }
-    
+
     @GetMapping("/listValidUser")
     @Operation(summary = "查询有效学生")
     public R searchValidUser() {
-        List<User> dataList =  userService.listValidUser();
+        List<User> dataList = userService.listValidUser();
         return R.ok().put("dataList", dataList);
     }
-    
+
     @PostMapping("/listPageValidUser")
     @Operation(summary = "查询当前页有效学生")
     public R searchPageValidUser(@Valid @RequestBody SearchFrontByPageForm form) {

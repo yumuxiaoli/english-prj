@@ -75,8 +75,8 @@
                 <el-col :span="16">
                     <div class="cx-1">
                         <el-carousel indicator-position="outside"  height="auto" autoplay style="width: 800px;">
-                            <el-carousel-item v-for="item in dataList" :key="item" style="height: auto;">
-                                <el-empty :image-size="300" :img="item.image"/>
+                            <el-carousel-item v-for="item in dataList" :key="item" style="height: 400px;">
+                                <el-image :src="item.image" style="height:400px"/>
                             </el-carousel-item>
                         </el-carousel>
                     </div>
@@ -92,8 +92,7 @@
                                     class="el-menu-vertical-demo"
                                     text-color="#fff"
                                     style="height: 400px">
-                                    <el-menu-item v-for="item in dataList" :key="item" 
-                                    @click="$router.push({name:'details'})"
+                                    <el-menu-item v-for="item in dataList" :key="item" :index="'/details/'+item.name"
                                     style="display: flex; justify-content: center;align-self: center;">
                                         {{  item.name }}
                                     </el-menu-item>
@@ -116,7 +115,7 @@
                         <el-image :src="o.image" />
                     </div>
                     <div style="display: flex;justify-content: center;color: white;">
-                        {{ o.name }}
+                        <router-link :to="'/details/'+o.name">{{ o.name }}</router-link>
                     </div>
                 </div>               
             </div> 
@@ -129,7 +128,7 @@
                         <el-image :src="o.image" style="height: 100%;width: 266px;" />
                     </div>
                     <div style="display: flex;justify-content: center;color: white;">
-                        {{ o.name }}
+                        <div>{{ o.name }}</div>
                     </div>
                 </div>               
             </div> 
@@ -241,7 +240,6 @@
     const dataList = ref([]) //数据列表
     const assort = ref([])
     const teacher = ref([])
-    const df = ref(null) // 获得页面的查询表单，对应页面的<el-form ...... ref="df">
     // 方法
     const dataForm = reactive({ //查询表单
       name: null,
@@ -277,44 +275,22 @@
         await post('teacher/listTeacherByPage', data).then((resp) => {
           handleResponse({resp, dataLoading},
             () => {
-              const page = resp.data.page;
-              teacher.value = page.list;
+                const page = resp.data.page;
+                teacher.value = page.list;
             }
           )
         })
 
     }
-    const currentChangeHandle = (val) => { //分页导航 每次值改变就去请求接口
-      pageIndex.value = val
-      loadDataList()
-    }
-    const sizeChangeHandle = (val) => { //更改每页显示记录数量后，都从第一页开始查询
-      pageSize.value = val;
-      pageIndex.value = 1;
-      loadDataList();
-    }
-    const searchHandle = () => { //查询
-      df.value.validate(valid => { //先执行表单验证
-        if (valid) {
-            df.value.clearValidate();//清理页面上的表单验证结果
-            dataForm.name = ifEmpty(dataForm.name)//因为服务器端进行正则验证，不允许上传空字符串给后端，但是可以传null值，
-            if (pageIndex.value != 1) { //如果当前页面不是第一页，则跳转到第一页显示查询的结果
-              pageIndex.value = 1;
-            }
-            loadDataList();
-        } else {
-            return false;
-        }
-      });
-    }
-    return { pageIndex, pageSize, totalCount, dataList, loadDataList, currentChangeHandle, dataForm, dataLoading, sizeChangeHandle, searchHandle, df,assort,teacher }
+
+    return { pageIndex, pageSize, totalCount, dataList, loadDataList, dataForm, dataLoading,assort,teacher}
   }
     const errorHandler = () => true
     const drawer = ref(false)
     const activeIndex = ref('1')
     const {	name,image,getInitData,nickname } = pageInitEffect()
     const {logout,showUpdatePassword,updateWin} = logEffect()
-    const { pageIndex, pageSize, totalCount, dataList, loadDataList, currentChangeHandle, dataForm, dataLoading, sizeChangeHandle, searchHandle, df, assort,teacher } = showEffect()
+    const { pageIndex, pageSize, totalCount, dataList, loadDataList,dataForm, dataLoading, assort,teacher } = showEffect()
     loadDataList();
     getInitData();
 </script>

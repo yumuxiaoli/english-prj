@@ -1,10 +1,9 @@
 <template>
     <div class="body">
         <el-menu
-            :default-active="activeIndex"
             mode="horizontal"
             :ellipsis="false"
-            @select="handleSelect"
+
             style="position: fixed;overflow: hidden;width: 100%;z-index: 9999"
         >
             <el-menu-item index="0">
@@ -72,169 +71,126 @@
         <div style="height: 30px;"></div>
         <!-- word-card -->
         <div class="recite-middle">
-            <!-- <div class="recite-card" v-for='o in dataList' :key="o"> -->
+            <div class="recite-card" > 
+                <!-- 页面标题 -->
+                <div v-if="dataList.length !== 0">
 
-                <el-card class="box-card">
-                    <div class="VSTD_box" v-if="question.length !== 0">
-                        <h1 style="margin-bottom: 40px; text-align: center">
-                            {{ iow.sjIntroduction }}
-                        </h1>
-                            <!-- 题的表单 -->
-                            <!-- 绑定表单的数据 ruleForm -->
-                            <!-- 绑定题的数组 ruleForm.resource[index] -->
+                    <!-- 题的表单 -->
+                    <!-- 绑定表单的数据 ruleForm -->
+                    <!-- 绑定题的数组 ruleForm.resource[index] -->
 
-                            data{
-                                return{
-                                ruleForm: {
-                                    resource: [],
-                                },
-                                }
-                            }
-
-                        <el-form
-                            :model="ruleForm"
-                            :rules="rules"
-                            ref="ruleForm"
-                            label-width="100px"
-                            class="demo-ruleForm"
+                <el-form
+                    :model="ruleForm"
+                    label-width="100px"
+                    class="demo-ruleForm"
+                >
+                    <!-- 循环后端给你的所有题 -->
+                    <div
+                        v-for="(item, index) in dataList"
+                        :key="item.id"
+                        style="padding-bottom: 20px ;"
                         >
-                            <!-- 循环后端给你的所有题 -->
-                            <div
-                            class="VSTD_box_item"
-                            v-for="(item, index) in question"
-                            :key="item.id"
-                            >
+                        <el-card class="ex-box-card">
+                    <!-- 1 单选 -->
+                    <!-- 2 判断 -->
+                    <!-- 3 多选 -->
 
-                            <!-- 1 单选 -->
-                            <!-- 2 判断 -->
-                            <!-- 3 多选 -->
-                            <!-- 4 简答 -->
+                    <div>
+                    
+                    <!-- 题目的信息 -->
+                    
+                        <p style="font-weight: 700">
+                        第{{ index + 1 }}题：{{ item.title
+                        }}<span></span>
+                        <span v-if="item.questionType == 1">（单选）</span>
+                        <span v-if="item.questionType == 2">（判断）</span>
+                        <span v-if="item.questionType == 3">（多选）</span>
+                        <span v-if="item.questionType == 4">（简答）</span>
+                        </p>
+                    </div>
 
-                            <div class="VSTD_box_item_title">
-                            
-                            <!-- 题目的信息 -->
-                            
-                                <p style="font-weight: 700">
-                                第{{ index + 1 }}题：{{ item.stContent
-                                }}<span>（{{ item.stScore }}分）</span>
-                                <span v-if="item.questionType == 1">（单选）</span>
-                                <span v-if="item.questionType == 2">（判断）</span>
-                                <span v-if="item.questionType == 3">（多选）</span>
-                                <span v-if="item.questionType == 4">（简答）</span>
-                                </p>
-                            </div>
-
-                            <!-- 如果questionType 等于1 那么他是单选题 -->
-                            <!-- 题目绑定的值是 ruleForm.resource[index]  -->
-                            
-                            <div v-if="item.questionType == 1" class="VSTD_box_item_select">
-                                <el-form-item label="" prop="resource">
-                                <el-radio-group v-model="ruleForm.resource[index]">
-                                    <el-radio label="A">{{ item.stSelecta }}</el-radio>
-                                    <el-radio label="B">{{ item.stSelectb }}</el-radio>
-                                    <el-radio label="C">{{ item.stSelectc }}</el-radio>
-                                    <el-radio label="D">{{ item.stSelectd }}</el-radio>
-                                </el-radio-group>
-                                </el-form-item>
-                            </div>
-                            
-                            <!-- 如果questionType 等于2 那么他是判断题 -->
-                            <!-- 题目绑定的值是 ruleForm.resource[index]  -->
-                            
-                            <div v-if="item.questionType == 2" class="VSTD_box_item_select">
-                                <el-form-item label="" prop="resource">
-                                <el-radio-group v-model="ruleForm.resource[index]">
-                                    <el-radio label="对">{{ item.stSelecta }}</el-radio>
-                                    <el-radio label="错">{{ item.stSelectb }}</el-radio>
-                                </el-radio-group>
-                                </el-form-item>
-                            </div>
-                            
-                            <!-- 如果questionType 等于3 那么他是多选题 -->
-                            <!-- 题目绑定的值是 ruleForm.resource[index]  -->
-                            
-                            <div v-if="item.questionType == 3" class="VSTD_box_item_select">
-                                <el-form-item label="" prop="resource">
-                                <el-checkbox-group
-                                    @input="change($event)"
-                                    v-model="ruleForm.resource[index]"
-                                >
-                                    <el-checkbox label="A">{{ item.stSelecta }}</el-checkbox>
-                                    <el-checkbox label="B">{{ item.stSelectb }}</el-checkbox>
-                                    <el-checkbox label="C">{{ item.stSelectc }}</el-checkbox>
-                                    <el-checkbox label="D">{{ item.stSelectd }}</el-checkbox>
-                                    <el-checkbox label="E">{{ item.stSelecte }}</el-checkbox>
-                                    <!-- <el-checkbox label="F">{{ item.stSelectf }}</el-checkbox> -->
-                                </el-checkbox-group>
-                                </el-form-item>
-                            </div>
-
-                            <!-- 如果questionType 等于4 那么他是简答题 -->
-                            <!-- 题目绑定的值是 ruleForm.resource[index]  -->
-                            
-                            <div v-if="item.questionType == 4" class="VSTD_box_item_select">
-                                <el-form-item label="" prop="resource">
-                                <!-- <el-form-item label="活动形式"> -->
-                                <el-input
-                                    type="textarea"
-                                    v-model="ruleForm.resource[index]"
-                                ></el-input>
-                                </el-form-item>
-                            </div>
-                            </div>
-                            
-                            <!-- 提交函数  -->
-                            
-                            <el-form-item style="text-align: center">
-                            <el-button type="primary" @click="submitForm('ruleForm', false)"
-                                >提交</el-button
-                            >
-                            </el-form-item>
-                        </el-form>
-                        </div>
-                        
-                            <!-- 如果没题就提示没题 -->
-                            
-                        <div v-else>
-                        <div class="none" style="margin-left: 0px">
-                            <div class="none_img"></div>
-                            <h3>暂无试题</h3>
-                        </div>
-                        </div>
-
-                            <!-- 表单提交后显示分数的弹窗 -->
-                            
-                        <el-dialog
-                        title="您此次评分为"
-                        :visible.sync="dialogVisible"
-                        width="30%"
-                        @close="handleClose"
+                    <!-- 如果questionType 等于1 那么他是单选题 -->
+                    <!-- 题目绑定的值是 ruleForm.resource[index]  -->
+                    
+                    <div v-if="item.questionType == 1" >
+                        <el-form-item label="" prop="resource">
+                        <el-radio-group v-model="ruleForm.resource[index]">
+                            <el-radio label="A">A、{{ item.selecta }}</el-radio>
+                            <el-radio label="B">B、{{ item.selectb }}</el-radio>
+                            <el-radio label="C">C、{{ item.selectc }}</el-radio>
+                            <el-radio label="D">D、{{ item.selectd }}</el-radio>
+                        </el-radio-group>
+                        </el-form-item>
+                    </div>
+                    
+                    <!-- 如果questionType 等于2 那么他是判断题 -->
+                    <!-- 题目绑定的值是 ruleForm.resource[index]  -->
+                    
+                    <div v-if="item.questionType == 2">
+                        <el-form-item label="" prop="resource">
+                        <el-radio-group v-model="ruleForm.resource[index]">
+                            <el-radio label="A">{{ item.selecta }}</el-radio>
+                            <el-radio label="B">{{ item.selectb }}</el-radio>
+                        </el-radio-group>
+                        </el-form-item>
+                    </div>
+                    
+                    <!-- 如果questionType 等于3 那么他是多选题 -->
+                    <!-- 题目绑定的值是 ruleForm.resource[index]  -->
+                    
+                    <div v-if="item.questionType == 3">
+                        <el-form-item label="" prop="resource">
+                        <el-checkbox-group
+                            @input="change($event)"
+                            v-model="ruleForm.resource[index]"
                         >
-                        <span style="font-size: 60px; color: #3e80f8">{{ score }}分</span>
-                        <span slot="footer" class="dialog-footer">
-                            <el-button @click="back()">返回</el-button>
-                            <el-button type="primary" @click="go">我的测评</el-button>
-                        </span>
-                        </el-dialog>
+                            <el-checkbox label="A">A、{{ item.selecta }}</el-checkbox>
+                            <el-checkbox label="B">B、{{ item.selectb }}</el-checkbox>
+                            <el-checkbox label="C">C、{{ item.selectc }}</el-checkbox>
+                            <el-checkbox label="D">D、{{ item.selectd }}</el-checkbox>
+                        </el-checkbox-group>
+                        </el-form-item>
+                    </div>
 
-                </el-card>
+                    <!-- 如果questionType 等于4 那么他是简答题 -->
+                    <!-- 题目绑定的值是 ruleForm.resource[index]  -->
+                    </el-card>
+                    </div>
+                    
+                    <!-- 提交函数  -->
+                    
+                    <el-form-item style="text-align:right;">
+                        <el-button type="primary" @click="dialogVisible = true"
+                            >提交</el-button
+                        >
+                    </el-form-item>
+                </el-form>
+                </div>
+                
+                    <!-- 如果没题就提示没题 -->
+                    
+                <div v-else>
+                <div class="none" style="margin-left: 0px">
+                    <div class="none_img"></div>
+                    <h3>暂无试题</h3>
+                </div>
+                </div>
 
-            <!-- </div>      -->
+                    <!-- 表单提交后显示分数的弹窗 -->
+                    
+                <el-dialog
+                v-model="dialogVisible"
+                title="您此次评分为"
+                width="30%"
+                @open="rightval"
+                :before-close="handleClose"
+                >
+                <div style="font-size: 50px; color: #3e80f8">你的正确率为 {{Math.round((sumval.count*100) / dataList.length)}}%</div>
+                <el-button type="primary" @click="dialogVisible = false;sumval.count=0">确认</el-button>
+                </el-dialog>
+
+            </div>     
         </div>
-            
-        <div class="co-page">
-            <el-pagination
-			@size-change="sizeChangeHandle"
-			@current-change="currentChangeHandle"
-			:current-page="pageIndex"
-			:page-sizes="[5, 10, 20]"
-			:page-size="pageSize"
-			:total="totalCount"
-			layout="total, sizes, prev, pager, next, jumper"
-		></el-pagination>	
-        </div>
-
-
         <!-- 回到头部 -->
         <el-backtop :right="100" :bottom="100">
             <el-icon><ArrowUpBold /></el-icon>
@@ -243,10 +199,7 @@
 </template>
 
 <script setup>   
-    // import { ref } from 'vue'
-    // const checkedCities = ref([''])
-    // const cities = ['Shanghai', 'Beijing', 'Guangzhou', 'Shenzhen']
-    import { ref, reactive } from 'vue'
+    import { ref, reactive,getCurrentInstance } from 'vue'
     import { post, get, handleResponse } from '../utils/request.js'
     import { ElMessage, ElMessageBox } from 'element-plus'
     import { ifEmpty } from '../utils/tool.js'
@@ -254,7 +207,9 @@
 		useRouter,
 		useRoute
 	} from 'vue-router'
+    const dialogVisible = ref(false)
 
+    const errorHandler = () => true
     const pageInitEffect = () => { // 封装页面初始化逻辑
         // 数据
         const name = ref([])
@@ -319,54 +274,55 @@
 		}
 	}
     const showEffect = () => { //封装显示操作, 包含数据显示功能: 加载数据列表、查询、分页显示功能
-        // 数据
-        const pageIndex = ref(1) //页码
-        const pageSize = ref(10) //每页条数
-        const totalCount = ref(0) //总条数
+        const dataList = ref([])
         const dataLoading = ref(false) //加载列表
-        const dataList = ref([]) //数据列表
-        const df = ref(null) // 获得页面的查询表单，对应页面的<el-form ...... ref="df">
-        // 方法
-        const dataForm = reactive({ //查询表单
-            title: null,
-            orderType:null, //排序类型: descending|ascending
-            orderColumn:null //排序字段名，对应的是prop属性
+        const ruleForm = reactive({
+            resource:[]
         })
-        const onSortChange = (column) => { //表单排序方法
-            dataForm.orderType = column.order
-            dataForm.orderColumn = column.prop
-            loadDataList()
-        }
+        const sumval = reactive({
+            count :0
+        })
+        // 数据
         const loadDataList = async () => { //加载数据列表
             dataLoading.value = true;
-            const data = { // 每次加载数据发送的数据对象,对应分页数据和查询数据
-                page: pageIndex.value,
-                length: pageSize.value,
-                title: ifEmpty(dataForm.title),
-                orderType: dataForm.orderType,
-                orderColumn: dataForm.orderColumn
-            };
-            await post('excise/listExciseByPage', data).then((resp) => {
+            await get('excise/questionlist').then((resp) => {
+                handleResponse({resp, dataLoading},
+                () => {
+                   dataList.value = resp.data.page;
+                   for (let i = 0; i < dataList.value.length; i++) {
+                        if (dataList.value[i].questionType == 3) {
+                            ruleForm.resource[i] = []
+                        }else{
+                            ruleForm.resource[i] = ''
+                        }
+                    } 
+                })
+            })
+        }
+
+        const rightval = async() =>{
+            const realval = ref([])
+            const dataLoading=ref(false)
+            dataLoading.value = true;
+            await get('excise/questionlist').then((resp) => {
                 handleResponse({resp, dataLoading},
                 () => {
                     const page = resp.data.page;
-                    dataList.value = page.list;
-                    totalCount.value = page.totalCount;
-                }
-                )
+                    for (let i = 0; i < page.length; i++) {
+                        realval[i] = page[i].rightanswer
+                        if (ruleForm.resource[i] instanceof Array) {
+                            ruleForm.resource[i]=ruleForm.resource[i].join()
+                        }
+                        console.log(realval[i],ruleForm.resource[i])
+                        if (realval[i] === ruleForm.resource[i]){
+                            sumval.count++;
+                        }
+                    }
+                })
             })
         }
-        const currentChangeHandle = (val) => { //分页导航 每次值改变就去请求接口
-            pageIndex.value = val
-            loadDataList()
-        }
-        const sizeChangeHandle = (val) => { //更改每页显示记录数量后，都从第一页开始查询
-            pageSize.value = val;
-            pageIndex.value = 1;
-            loadDataList();
-        }
-        return { pageIndex, pageSize, totalCount, dataList, loadDataList, currentChangeHandle, dataForm, dataLoading, sizeChangeHandle }
-        }
+        return { loadDataList, dataList,ruleForm,rightval,sumval}
+    }
     const validatorRule = () => { //封装客户端数据验证规则
     const dataRule = ref('');
     dataRule.value = {
@@ -377,11 +333,16 @@
     }
     return { dataRule }
     }
-    const { pageIndex, pageSize, totalCount, dataList, loadDataList, currentChangeHandle, dataForm, dataLoading, sizeChangeHandle} = showEffect()
+    const handleClose = () => {
+        sumval.count=0
+        dialogVisible.value = false
+    }
+    const { loadDataList, dataList, ruleForm,rightval,sumval} = showEffect()
     const { dataRule } = validatorRule()
     const {	name,image,getInitData,nickname } = pageInitEffect()
     const {logout,showUpdatePassword,updateWin} = logEffect()
     getInitData();
     loadDataList();
+
 </script>
                                                                                                                                                                                                                                                                                                                                              

@@ -178,7 +178,8 @@
   <select id="questionList" resultType="HashMap">
     SELECT
       id,
-        title,
+      title,
+      questionType,
       rightanswer,
       selecta,
       selectb,

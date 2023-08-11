@@ -93,7 +93,7 @@
                         <el-image :src="o.image"/>
                     </div>
                     <div>
-                        {{ o.name }}
+                        <router-link :to="'/details/'+o.name">{{ o.name }}</router-link>
                     </div>
                 </div>               
             </div>    
@@ -131,6 +131,7 @@
 		useRoute
 	} from 'vue-router'
 
+  
   const pageInitEffect = () => { // 封装页面初始化逻辑
       // 数据
       const name = ref([])
@@ -281,6 +282,7 @@
     }
     return { dataRule }
   }
+  
   const { pageIndex, pageSize, totalCount, dataList, loadDataList, currentChangeHandle, dataForm, dataLoading, sizeChangeHandle, searchHandle, df, assort,teacher } = showEffect()
   const { dataRule } = validatorRule()
   const {	name,image,getInitData,nickname } = pageInitEffect()

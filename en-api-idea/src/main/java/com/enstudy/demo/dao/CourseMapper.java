@@ -44,7 +44,7 @@ public interface CourseMapper {
      * @return
      */
     Course selectByName(String name);
-    
+
     /**
      * 查询有效课程
      * @return
@@ -57,4 +57,9 @@ public interface CourseMapper {
      */
     List<Course> listPageValidCourse(HashMap map);
 
+
+    /**
+     * 查询课程ID的数据
+     */
+    public ArrayList<HashMap> listCourseByTeacherId(String teacherId);
 }

@@ -49,8 +49,11 @@ public class UserServiceImpl {
      */
 
     public int insert(User user) {
-
         Date now=new Date();
+        String salt = UUID.randomUUID().toString().replace("-","");
+        String newPassword = MD5Util.md5(user.getPassword(),salt,5);
+        user.setPassword(newPassword);
+        user.setSalt(salt);
         user.setCreatedAt(now); //设置创建时间
         user.setUpdatedAt(now); //设置更新时间
         int rows = userMapper.insertSelective(user);

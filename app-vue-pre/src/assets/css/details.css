@@ -3,7 +3,6 @@
     margin: 100px;
     margin-top: 50px ;
     margin-bottom: 20px ;
-    background-color:steelblue;
     height: 550px;
 }
 
@@ -23,8 +22,15 @@
 }
 
 .detail-middle-1{
+    background-color: #475669;
+    color:aliceblue;
+    height: 300px;
+}
+
+.detail-middle-2{
     height: 500px;
-    
+    background-color: #475669;
+    color:aliceblue;
 }
 
 .dta-title{
@@ -35,6 +41,7 @@
 
 .dta-video{
     padding: 50px;
+    padding-top: 0;
     display: flex;
     /* flex-direction: row; */
     
@@ -54,11 +61,14 @@
 .tea-name{
     padding: 50px;
     padding-bottom:0 ;
+    display: flex;
+    flex-direction: row;
 }
 
 .tea-txt{
-    background-color: blueviolet;
     padding: 50px;
     width: 600px;
+    display: flex;
+    flex-direction: row;
 }
 

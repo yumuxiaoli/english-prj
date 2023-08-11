@@ -12,6 +12,9 @@
 			<el-form-item label="用户名:" prop="username" >
 				<el-input v-model="dataForm.username"  size="default" style="width:100%" clearable />
 			</el-form-item>
+      <el-form-item label="密码:" prop="password" >
+				<el-input v-model="dataForm.password"  size="default" style="width:100%" clearable />
+			</el-form-item>
 			<el-form-item label="昵称:" prop="nickname" >
 				<el-input v-model="dataForm.nickname"  size="default" style="width:100%" clearable />
 			</el-form-item>
@@ -71,7 +74,6 @@ const operateEffect = () => { // 封装页面操作逻辑
     username: null,
     nickname: null,
     password: null,
-    salt: null,
     image: null,
     imageSize: 0,
     email: null,

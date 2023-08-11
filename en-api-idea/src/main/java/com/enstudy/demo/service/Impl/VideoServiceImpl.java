@@ -25,6 +25,17 @@ public class VideoServiceImpl {
     }
 
     /**
+     * 根绝课程ID查询
+     * @param courseId
+     * @return
+     */
+    public ArrayList<HashMap> listVideoByCourseId(String courseId) {
+        ArrayList<HashMap> list = videoMapper.listCourseIdVideo(courseId);
+        return list;
+    }
+
+
+    /**
      * 删除视频信息
      * @param ids
      * @return

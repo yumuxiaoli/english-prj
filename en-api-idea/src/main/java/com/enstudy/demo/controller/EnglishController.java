@@ -40,7 +40,7 @@ public class EnglishController {
         User user = userService.login(form.getUsername(), form.getPassword());
         R r=R.ok().put("result", user!=null?true:false);
         if (user != null) {
-            user.setPassword(null);
+
             StpUtil.login(user.getId());
             return r;
         } else {

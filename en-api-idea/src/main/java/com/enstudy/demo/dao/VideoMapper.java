@@ -33,6 +33,11 @@ public interface VideoMapper {
     public ArrayList<HashMap> listPageVideo(HashMap param);
 
     /**
+     * 查询课程ID的数据
+     */
+    public ArrayList<HashMap> listCourseIdVideo(String courseId);
+
+    /**
      * 删除视频信息
      * @param ids
      * @return

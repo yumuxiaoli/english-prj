@@ -82,6 +82,7 @@ const operateEffect = () => { // 封装页面操作逻辑
   const dataLoading = ref(false) //动态加载
   const imageUpload = ref() //上传组件
   const teacherList = ref([])
+  const assortList = ref([])
   const detailsEditor = ref(); //富文本编辑器
   // 方法
   const dataForm = reactive({ //数据表单
@@ -104,7 +105,7 @@ const operateEffect = () => { // 封装页面操作逻辑
       imageUpload.value.clearUrl() //清空上传域
       detailsEditor.value.clearData() // 清空富文本编辑器的内容
     })
-    await multiStrictGet([get('course/searchById', {id}), get('teacher/listValidTeacher')])
+    await multiStrictGet([get('course/searchById', {id}),get('assort/listValidAssort'), get('teacher/listValidTeacher')])
       .then((result) => {
           if(result[0].data?.data){
             Object.assign(dataForm, result[0].data?.data) //将返回数据复制到dataForm中
@@ -115,7 +116,8 @@ const operateEffect = () => { // 封装页面操作逻辑
           }else{
             ElMessage({ message: '未查到对应数据', type: 'warning', offset: 200, center: true })
           }
-          teacherList.value = result[1]?.data.dataList
+          teacherList.value = result[2]?.data.dataList
+          assortList.value = result[1]?.data.dataList
       }).catch((err) => {
         ElMessage({ message: '服务器错误', type: 'error', offset: 200, center: true })
         console.log(err)
@@ -144,7 +146,7 @@ const operateEffect = () => { // 封装页面操作逻辑
     });
   }
   return {
-    init, visible, dataForm, dataFormSubmit, df, dataLoading, imageUpload, teacherList, detailsEditor, 
+    init, visible, dataForm, dataFormSubmit, df, dataLoading, imageUpload, teacherList, detailsEditor, assortList
   }
 }
 const validatorRule = () => { //封装客户端数据验证规则
@@ -165,7 +167,7 @@ const validatorRule = () => { //封装客户端数据验证规则
   return { dataRule }
 }
 const emits = defineEmits(["refreshDataList"]) //父传入子refreshDataList事件
-const { init, visible, dataForm, dataFormSubmit, df, dataLoading, imageUpload, teacherList, detailsEditor,} = operateEffect()
+const { init, visible, dataForm, dataFormSubmit, df, dataLoading, imageUpload, teacherList,assortList, detailsEditor,} = operateEffect()
 const { imageFormat, setImageInfo, removeImageInfo } = imageUploadEffect(dataForm)
 const { dataRule } = validatorRule()
 defineExpose({ init }) //向父组件暴露init方法

@@ -1,6 +1,7 @@
 package com.enstudy.demo.controller;
 
 ;
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.json.JSONUtil;
 import com.enstudy.demo.controller.form.*;
 import com.enstudy.demo.dto.R;
@@ -81,6 +82,20 @@ public class CourseController {
         HashMap param = JSONUtil.parse(form).toBean(HashMap.class);
         PageUtil pageUtils = courseService.listPageValidCourse(param);
         return R.ok().put("page", pageUtils);
+    }
+
+    @GetMapping("/courseByName")
+    @Operation(summary = "查询有效课程")
+    public R CourseByName(@Valid SearchByNameForm form) {
+        Course course = courseService.selectByName(form.getName());
+        return R.ok().put("data", course);
+    }
+
+    @GetMapping("/listCourseByTeacherId")
+    @Operation(summary = "查询视频分页数据")
+    public R listVideoByCourseId(@Valid SearchCourseByTeacherIdForm form) {
+        ArrayList<HashMap> list = courseService.listCourseByTeacherId(form.getTeacherId());
+        return R.ok().put("page", list);
     }
 
 }

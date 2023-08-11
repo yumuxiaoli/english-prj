@@ -81,4 +81,10 @@ public class VideoController {
         PageUtil pageUtils = videoService.listPageValidVideo(param);
         return R.ok().put("page", pageUtils);
     }
+    @GetMapping("/listVideoByCourseId")
+    @Operation(summary = "查询视频分页数据")
+    public R listVideoByCourseId(@Valid SearchVideoByCourseIdForm form) {
+        ArrayList<HashMap> list = videoService.listVideoByCourseId(form.getCourseId());
+        return R.ok().put("page", list);
+    }
 }

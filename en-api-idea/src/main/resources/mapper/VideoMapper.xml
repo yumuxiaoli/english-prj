@@ -131,7 +131,17 @@
     t.id desc
   </select>
 
-  
+  <select id="listCourseIdVideo" parameterType="java.lang.String" resultType="HashMap">
+    SELECT
+    id,
+    title,
+    video,
+    course_id
+    FROM video
+    WHERE
+    course_id = #{courseId};
+  </select>
+
   <delete id="deleteVideoByIds">
     DELETE FROM video
     WHERE id IN

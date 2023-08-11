@@ -103,4 +103,22 @@ public class CourseServiceImpl {
         return pageUtils;
     }
 
+    /**
+     * 根据id查询
+     * @param name
+     * @return
+     */
+    public Course selectByName(String name){
+        return courseMapper.selectByName(name);
+    }
+
+    /**
+     * 根绝讲师ID查询
+     * @param courseId
+     * @return
+     */
+    public ArrayList<HashMap> listCourseByTeacherId(String teacherId) {
+        ArrayList<HashMap> list = courseMapper.listCourseByTeacherId(teacherId);
+        return list;
+    }
 }

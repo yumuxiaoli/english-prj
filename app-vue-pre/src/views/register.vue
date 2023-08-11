@@ -59,10 +59,9 @@
 	</div>
 </template>
 <script setup>
-import dayjs from 'dayjs';
 import { ref, reactive, nextTick } from 'vue'
 import { ElMessage } from 'element-plus'
-import { post, get, handleResponse } from '../utils/request.js'
+import { post,handleResponse } from '../utils/request.js'
 import { validateFileSize, validateSort } from '../utils/validate.js'
 import FrontUpload from '../components/FrontUpload.vue'
 const imageUploadEffect = (dataForm) => { // 封装文件上传逻辑
@@ -81,7 +80,6 @@ const imageUploadEffect = (dataForm) => { // 封装文件上传逻辑
 }
 const operateEffect = () => { // 封装页面操作逻辑
   // 数据
-  const visible = ref(false)
   const df = ref(null) // 获得页面的dom元素，对应页面的新增表单
   const dataLoading = ref(false) //动态加载
   const imageUpload = ref() //上传组件
@@ -119,7 +117,7 @@ const operateEffect = () => { // 封装页面操作逻辑
     });
   }
   return {
-    init, visible, dataForm, dataFormSubmit, df, dataLoading, imageUpload,   
+    init, dataForm, dataFormSubmit, df, dataLoading, imageUpload,   
   }
 }
 const ConfirmPassword = (rule, value, callback) => {
@@ -191,7 +189,7 @@ const validatorRule = () => { //封装客户端数据验证规则
   return { dataRule }
 }
 const emits = defineEmits(["refreshDataList"]) //父传入子refreshDataList事件
-const { init, visible, dataForm, dataFormSubmit, df, dataLoading, imageUpload,   } = operateEffect()
+const { init, dataForm, dataFormSubmit, df, dataLoading, imageUpload,   } = operateEffect()
 const { imageFormat, setImageInfo, removeImageInfo } = imageUploadEffect(dataForm)
 const { dataRule } = validatorRule()
 defineExpose({ init }) //向父组件暴露init方法

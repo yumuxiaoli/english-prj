@@ -22,11 +22,7 @@ public class InsertUserForm {
     @NotBlank(message = "password不能为空")
     @Schema(description = "密码")
     private String password;
-    
-    @NotBlank(message = "salt不能为空")
-    @Schema(description = "盐值")
-    private String salt;
-    
+
     @NotBlank(message = "image不能为空")
     @Schema(description = "头像")
     private String image;
