@@ -57,9 +57,6 @@ public class WordsServiceImpl {
      */
     public boolean ifWordsExists(String words, Integer id) {
         Words word=wordsMapper.selectByWords(words);
-        System.out.println("================================================");
-        System.out.println(id);
-        System.out.println("================================================");
         if(id==null)
             return words==null;//新增时判断是否重复
         else

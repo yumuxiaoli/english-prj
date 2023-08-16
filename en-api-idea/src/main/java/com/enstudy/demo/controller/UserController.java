@@ -4,6 +4,7 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.json.JSONUtil;
 import com.enstudy.demo.controller.form.*;
 import com.enstudy.demo.dto.R;
+import com.enstudy.demo.pojo.Teacher;
 import com.enstudy.demo.pojo.User;
 import com.enstudy.demo.service.Impl.UserServiceImpl;;
 import com.enstudy.demo.util.PageUtil;
@@ -59,6 +60,12 @@ public class UserController {
         } else {
             return R.error("错误:昵称已存在");
         }
+    }
+    @GetMapping("/searchById")
+    @Operation(summary = "根据ID查询用户")
+    public R searchById(@Valid SearchByIdForm form) {
+        User  user = userService.selectById(form.getId());
+        return R.ok().put("data", user);
     }
 
     @GetMapping("/listValidUser")

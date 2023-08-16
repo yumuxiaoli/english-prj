@@ -168,7 +168,7 @@
             console.log(resp)
             name.value = resp.data.username
             image.value = resp.data.image
-                    nickname.value = resp.data.nickname
+            nickname.value = resp.data.nickname
             }).catch((err) => {
             console.log(err)
             ElMessage({
@@ -255,35 +255,13 @@
         })
 
     }
-    const currentChangeHandle = (val) => { //分页导航 每次值改变就去请求接口
-        pageIndex.value = val
-        loadDataList()
-    }
-    const sizeChangeHandle = (val) => { //更改每页显示记录数量后，都从第一页开始查询
-        pageSize.value = val;
-        pageIndex.value = 1;
-        loadDataList();
-    }
-    const searchHandle = () => { //查询
-        df.value.validate(valid => { //先执行表单验证
-        if (valid) {
-            df.value.clearValidate();//清理页面上的表单验证结果
-            dataForm.words = ifEmpty(dataForm.words)//因为服务器端进行正则验证，不允许上传空字符串给后端，但是可以传null值，
-            if (pageIndex.value != 1) { //如果当前页面不是第一页，则跳转到第一页显示查询的结果
-                pageIndex.value = 1;
-            }
-            loadDataList();
-        } else {
-            return false;
-        }
-        });
-    }
-    return { pageIndex, pageSize, totalCount, dataList, loadDataList, currentChangeHandle, dataForm, dataLoading, sizeChangeHandle, searchHandle, df }
+
+    return { pageIndex, pageSize, totalCount, dataList, loadDataList, dataForm, dataLoading }
     }
 
 
     const errorHandler = () => true
-    const { pageIndex, pageSize, totalCount, dataList, loadDataList, currentChangeHandle, dataForm, dataLoading, sizeChangeHandle, searchHandle, df, assort,teacher } = showEffect()
+    const { pageIndex, pageSize, totalCount, dataList, loadDataList, dataForm, dataLoading,  } = showEffect()
     const {	name,image,getInitData,nickname } = pageInitEffect()
     const {logout,showUpdatePassword,updateWin} = logEffect()
     getInitData();

@@ -94,9 +94,6 @@
                             <el-menu-item index="/update-password" style="justify-content: center;font-size: 16px;">
                                 修改密码
                             </el-menu-item>
-                            <el-menu-item index="3" style="justify-content: center;font-size: 16px;">
-                                进度查看
-                            </el-menu-item>
                         </el-menu>
                     </div> 
                 </el-card>

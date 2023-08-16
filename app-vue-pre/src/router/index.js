@@ -88,27 +88,27 @@ const router = createRouter({
 	routes
 })
 
-router.beforeEach((to, from, next) => {
-	if (to.name != "Login" ) { // 不是登录页面
-		let token = localStorage.getItem("token")
-		let avtivity_time =parseInt(localStorage.getItem("activity_time"));
-		let now_time = parseInt(new Date().getTime()/1000);
-		if((now_time - avtivity_time)>60*60 && !isNaN(avtivity_time)){//判断是否超过60分钟没有请求
-			localStorage.removeItem("activity_time")
-			next({ name: 'Login' }) // 进入登录页面
-		}else{
-			if (token == null || token == "") { // 未登录
-				next({ name: 'Login' }) // 进入登录页面
-			} else {
-				localStorage.setItem("activity_time",parseInt(new Date().getTime()/1000));
-				next()
-			}
-		}
-	} else {
-		next() // 进入下一页面
-	}
-	// return
-})
+// router.beforeEach((to, from, next) => {
+// 	if (to.name != "Login" ) { // 不是登录页面
+// 		let token = localStorage.getItem("token")
+// 		let avtivity_time =parseInt(localStorage.getItem("activity_time"));
+// 		let now_time = parseInt(new Date().getTime()/1000);
+// 		if((now_time - avtivity_time)>60*60 && !isNaN(avtivity_time)){//判断是否超过60分钟没有请求
+// 			localStorage.removeItem("activity_time")
+// 			next({ name: 'Login' }) // 进入登录页面
+// 		}else{
+// 			if (token == null || token == "") { // 未登录
+// 				next({ name: 'Login' }) // 进入登录页面
+// 			} else {
+// 				localStorage.setItem("activity_time",parseInt(new Date().getTime()/1000));
+// 				next()
+// 			}
+// 		}
+// 	} else {
+// 		next() // 进入下一页面
+// 	}
+// 	// return
+// })
 
 
 

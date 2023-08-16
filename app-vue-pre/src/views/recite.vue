@@ -203,7 +203,6 @@
     const totalCount = ref(0) //总条数
     const dataLoading = ref(false) //加载列表
     const dataList = ref([]) //数据列表
-    const df = ref(null) // 获得页面的查询表单，对应页面的<el-form ...... ref="df">
 
         // 方法
     const dataForm = reactive({ //查询表单
@@ -240,21 +239,8 @@
         pageIndex.value = 1;
         loadDataList();
     }
-    const searchHandle = () => { //查询
-        df.value.validate(valid => { //先执行表单验证
-        if (valid) {
-            df.value.clearValidate();//清理页面上的表单验证结果
-            dataForm.words = ifEmpty(dataForm.words)//因为服务器端进行正则验证，不允许上传空字符串给后端，但是可以传null值，
-            if (pageIndex.value != 1) { //如果当前页面不是第一页，则跳转到第一页显示查询的结果
-                pageIndex.value = 1;
-            }
-            loadDataList();
-        } else {
-            return false;
-        }
-        });
-    }
-    return { pageIndex, pageSize, totalCount, dataList, loadDataList, currentChangeHandle, dataForm, dataLoading, sizeChangeHandle, searchHandle, df }
+
+    return { pageIndex, pageSize, totalCount, dataList, loadDataList, currentChangeHandle, dataForm, dataLoading, sizeChangeHandle }
     }
     const validatorRule = () => { //封装客户端数据验证规则
     const dataRule = ref('');
@@ -266,7 +252,7 @@
     }
     return { dataRule }
     }
-    const { pageIndex, pageSize, totalCount, dataList, loadDataList, currentChangeHandle, dataForm, dataLoading, sizeChangeHandle, searchHandle, df} = showEffect()
+    const { pageIndex, pageSize, totalCount, dataList, loadDataList, currentChangeHandle, dataForm, dataLoading, sizeChangeHandle} = showEffect()
     const { dataRule } = validatorRule()
     const {	name,image,getInitData,nickname } = pageInitEffect()
     const {logout,showUpdatePassword,updateWin} = logEffect()

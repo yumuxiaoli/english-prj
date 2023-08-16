@@ -22,9 +22,6 @@ spring:
       max-active: 4
       min-idle: 4
       max-wait: 60000
-      test-while-idle: true
-      test-on-borrow: false
-      test-on-return: false
   redis:
     database: 0
     host: localhost
