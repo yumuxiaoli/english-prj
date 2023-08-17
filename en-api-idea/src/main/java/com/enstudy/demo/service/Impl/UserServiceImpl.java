@@ -3,6 +3,7 @@ package com.enstudy.demo.service.Impl;
 import com.enstudy.demo.dao.UserMapper;
 import com.enstudy.demo.pojo.M_User;
 import com.enstudy.demo.pojo.User;
+import com.enstudy.demo.service.UserService;
 import com.enstudy.demo.util.MD5Util;
 import com.enstudy.demo.util.PageUtil;
 
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;

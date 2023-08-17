@@ -25,4 +25,6 @@ public interface TeacherService {
     public List<Teacher> listValidTeacher();
 
     public PageUtil listPageValidTeacher(HashMap param);
+
+
 }

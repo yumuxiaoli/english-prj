@@ -4,6 +4,7 @@ package com.enstudy.demo.service.Impl;
 import com.enstudy.demo.dao.ExciseMapper;
 import com.enstudy.demo.dto.R;
 import com.enstudy.demo.pojo.Excise;
+import com.enstudy.demo.service.ExciseService;
 import com.enstudy.demo.util.PageUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.*;
 
 @Service
-public class ExciseServiceImpl {
+public class ExciseServiceImpl implements ExciseService {
 
     @Autowired
     private ExciseMapper exciseMapper;

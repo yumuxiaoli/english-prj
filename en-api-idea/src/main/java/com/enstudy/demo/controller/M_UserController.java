@@ -4,8 +4,8 @@ import cn.dev33.satoken.stp.StpUtil;
 import com.enstudy.demo.controller.form.LoginForm;
 import com.enstudy.demo.dto.R;
 import com.enstudy.demo.pojo.M_User;
-import com.enstudy.demo.service.Impl.M_UserServiceImpl;
 
+import com.enstudy.demo.service.M_UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.HashMap;
 
@@ -24,7 +23,7 @@ import java.util.HashMap;
 public class M_UserController {
 
     @Autowired
-    private M_UserServiceImpl userService;
+    private M_UserService userService;
 
     @PostMapping("login")
     @Operation(summary = "登陆系统")

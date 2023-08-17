@@ -5,7 +5,7 @@ import cn.hutool.json.JSONUtil;
 import com.enstudy.demo.controller.form.*;
 import com.enstudy.demo.dto.R;
 import com.enstudy.demo.pojo.Excise;
-import com.enstudy.demo.service.Impl.ExciseServiceImpl;
+import com.enstudy.demo.service.ExciseService;
 import com.enstudy.demo.util.PageUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -20,7 +20,7 @@ import java.util.*;
 public class ExciseController {
 
     @Autowired
-    private ExciseServiceImpl exciseService;
+    private ExciseService exciseService;
 
     @PostMapping("/listExciseByPage")
     @Operation(summary = "查询练习分页数据")

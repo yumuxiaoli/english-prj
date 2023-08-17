@@ -4,7 +4,7 @@ import cn.hutool.json.JSONUtil;
 import com.enstudy.demo.controller.form.*;
 import com.enstudy.demo.dto.R;
 import com.enstudy.demo.pojo.Span;
-import com.enstudy.demo.service.Impl.SpanServiceImpl;
+import com.enstudy.demo.service.SpanService;
 import com.enstudy.demo.util.PageUtil;;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -19,7 +19,7 @@ import java.util.*;
 public class SpanController {
 
     @Autowired
-    private SpanServiceImpl spanService;
+    private SpanService spanService;
 
     @PostMapping("/listSpanByPage")
     @Operation(summary = "查询文章分页数据")

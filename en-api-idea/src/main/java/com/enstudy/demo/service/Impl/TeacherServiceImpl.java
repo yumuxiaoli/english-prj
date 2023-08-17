@@ -4,6 +4,7 @@ package com.enstudy.demo.service.Impl;
 
 import com.enstudy.demo.dao.TeacherMapper;
 import com.enstudy.demo.pojo.Teacher;
+import com.enstudy.demo.service.TeacherService;
 import com.enstudy.demo.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class TeacherServiceImpl {
+public class TeacherServiceImpl implements TeacherService {
 
     @Autowired
     private TeacherMapper teacherMapper;

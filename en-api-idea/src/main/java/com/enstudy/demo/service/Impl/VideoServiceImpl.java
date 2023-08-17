@@ -2,13 +2,14 @@ package com.enstudy.demo.service.Impl;
 
 import com.enstudy.demo.dao.VideoMapper;
 import com.enstudy.demo.pojo.Video;
+import com.enstudy.demo.service.VideoService;
 import com.enstudy.demo.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class VideoServiceImpl {
+public class VideoServiceImpl implements VideoService {
 
     @Autowired
     private VideoMapper videoMapper;

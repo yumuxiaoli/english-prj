@@ -23,4 +23,6 @@ public interface ExciseService {
     public List<Excise> listValidExcise();
 
     public PageUtil listPageValidExcise(HashMap param);
+
+    public ArrayList<HashMap> questionlist();
 }

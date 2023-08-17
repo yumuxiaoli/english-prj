@@ -4,7 +4,7 @@ import cn.hutool.json.JSONUtil;
 import com.enstudy.demo.controller.form.*;
 import com.enstudy.demo.dto.R;
 import com.enstudy.demo.pojo.Assort;
-import com.enstudy.demo.service.Impl.AssortServiceImpl;
+import com.enstudy.demo.service.AssortService;
 
 import com.enstudy.demo.util.PageUtil;
 import io.swagger.v3.oas.annotations.Operation;
@@ -20,7 +20,7 @@ import java.util.*;
 public class AssortController {
 
     @Autowired
-    private AssortServiceImpl assortService;
+    private AssortService assortService;
 
     @PostMapping("/listAssortByPage")
     @Operation(summary = "查询分类分页数据")

@@ -2,13 +2,14 @@ package com.enstudy.demo.service.Impl;
 
 import com.enstudy.demo.dao.WordsMapper;
 import com.enstudy.demo.pojo.Words;
+import com.enstudy.demo.service.WordsService;
 import com.enstudy.demo.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class WordsServiceImpl {
+public class WordsServiceImpl implements WordsService {
 
     @Autowired
     private WordsMapper wordsMapper;
@@ -101,14 +102,6 @@ public class WordsServiceImpl {
         List<Words> list = wordsMapper.listPageValidWords(param);
         PageUtil pageUtils = new PageUtil(list, param);
         return pageUtils;
-    }
-    /**
-     * 随机查询单词翻译
-     * @return
-     */
-    public ArrayList<String> randWords(String word){
-        ArrayList<String> list = wordsMapper.randWords(word);
-        return list;
     }
 
 

@@ -4,22 +4,17 @@ import cn.dev33.satoken.annotation.SaCheckLogin;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.json.JSONUtil;
 import com.enstudy.demo.controller.form.*;
-import com.enstudy.demo.dao.UserMapper;
 import com.enstudy.demo.dto.R;
 import com.enstudy.demo.pojo.User;
-import com.enstudy.demo.pojo.Words;
-import com.enstudy.demo.service.Impl.UserServiceImpl;;
-
-import com.enstudy.demo.service.Impl.WordsServiceImpl;
+import com.enstudy.demo.service.UserService;
+import com.enstudy.demo.service.WordsService;
 import com.enstudy.demo.util.MD5Util;
-import com.enstudy.demo.util.PageUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.*;
 
@@ -29,9 +24,7 @@ import java.util.*;
 public class EnglishController {
 
     @Autowired
-    private UserServiceImpl userService;
-    private WordsServiceImpl wordsService;
-
+    private UserService userService;
 
     @PostMapping("login")
     @Operation(summary = "登陆系统")
@@ -83,12 +76,5 @@ public class EnglishController {
         return R.ok();
     }
 
-//    @GetMapping("/excise")
-//    @Operation(summary = "练习")
-//    public R excise(@Valid @RequestBody SearchWordsByPageForm form){
-//        HashMap param = JSONUtil.parse(form).toBean(HashMap.class);
-//        PageUtil pageUtils = wordsService.listWordsByPage(param);
-//        return R.ok().put("page", pageUtils);
-//    }
 
 }

@@ -4,9 +4,8 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.json.JSONUtil;
 import com.enstudy.demo.controller.form.*;
 import com.enstudy.demo.dto.R;
-import com.enstudy.demo.pojo.Teacher;
 import com.enstudy.demo.pojo.User;
-import com.enstudy.demo.service.Impl.UserServiceImpl;;
+import com.enstudy.demo.service.UserService;
 import com.enstudy.demo.util.PageUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,7 +20,7 @@ import java.util.*;
 public class UserController {
 
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @PostMapping("/listUserByPage")
     @Operation(summary = "查询学生分页数据")

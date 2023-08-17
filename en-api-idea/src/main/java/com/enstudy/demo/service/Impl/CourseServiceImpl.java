@@ -2,13 +2,14 @@ package com.enstudy.demo.service.Impl;
 
 import com.enstudy.demo.dao.CourseMapper;
 import com.enstudy.demo.pojo.Course;
+import com.enstudy.demo.service.CourseService;
 import com.enstudy.demo.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class CourseServiceImpl {
+public class CourseServiceImpl  implements CourseService {
 
     @Autowired
     private CourseMapper courseMapper;

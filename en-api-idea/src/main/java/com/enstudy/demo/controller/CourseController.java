@@ -1,12 +1,10 @@
 package com.enstudy.demo.controller;
 
-;
-import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.json.JSONUtil;
 import com.enstudy.demo.controller.form.*;
 import com.enstudy.demo.dto.R;
 import com.enstudy.demo.pojo.Course;
-import com.enstudy.demo.service.Impl.CourseServiceImpl;
+import com.enstudy.demo.service.CourseService;
 import com.enstudy.demo.util.PageUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,7 +19,7 @@ import java.util.*;
 public class CourseController {
 
     @Autowired
-    private CourseServiceImpl courseService;
+    private CourseService courseService;
 
     @PostMapping("/listCourseByPage")
     @Operation(summary = "查询课程分页数据")

@@ -1,12 +1,11 @@
 package com.enstudy.demo.controller;
 
-import cn.dev33.satoken.annotation.SaCheckPermission;
-import cn.dev33.satoken.annotation.SaMode;
 import cn.hutool.json.JSONUtil;
 import com.enstudy.demo.controller.form.*;
 import com.enstudy.demo.dto.R;
 import com.enstudy.demo.pojo.Teacher;
-import com.enstudy.demo.service.Impl.TeacherServiceImpl;
+
+import com.enstudy.demo.service.TeacherService;
 import com.enstudy.demo.util.PageUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,7 +20,7 @@ import java.util.*;
 public class TeacherController {
 
     @Autowired
-    private TeacherServiceImpl teacherService;
+    private TeacherService teacherService;
 
     @PostMapping("/listTeacherByPage")
     @Operation(summary = "查询讲师分页数据")

@@ -21,4 +21,6 @@ public interface VideoService {
 
     public PageUtil listPageValidVideo(HashMap param);
 
+    public ArrayList<HashMap> listVideoByCourseId(String courseId);
+
 }

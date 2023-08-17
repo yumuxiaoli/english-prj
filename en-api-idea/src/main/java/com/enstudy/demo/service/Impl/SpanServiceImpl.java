@@ -4,13 +4,14 @@ import cn.hutool.core.convert.*;
 import cn.hutool.core.date.*;
 import com.enstudy.demo.dao.SpanMapper;
 import com.enstudy.demo.pojo.Span;
+import com.enstudy.demo.service.SpanService;
 import com.enstudy.demo.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class SpanServiceImpl {
+public class SpanServiceImpl implements SpanService {
 
     @Autowired
     private SpanMapper spanMapper;

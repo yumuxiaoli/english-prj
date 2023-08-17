@@ -3,13 +3,14 @@ package com.enstudy.demo.service.Impl;
 ;
 import com.enstudy.demo.dao.AssortMapper;
 import com.enstudy.demo.pojo.Assort;
+import com.enstudy.demo.service.AssortService;
 import com.enstudy.demo.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class AssortServiceImpl {
+public class AssortServiceImpl implements AssortService{
 
     @Autowired
     private AssortMapper assortMapper;

@@ -5,6 +5,7 @@ import com.enstudy.demo.controller.form.*;
 import com.enstudy.demo.dto.R;
 import com.enstudy.demo.pojo.Words;
 import com.enstudy.demo.service.Impl.WordsServiceImpl;
+import com.enstudy.demo.service.WordsService;
 import com.enstudy.demo.util.PageUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -19,7 +20,7 @@ import java.util.*;
 public class WordsController {
 
     @Autowired
-    private WordsServiceImpl wordsService;
+    private WordsService wordsService;
 
     @PostMapping("/listWordsByPage")
     @Operation(summary = "查询单词分页数据")
@@ -81,13 +82,4 @@ public class WordsController {
         PageUtil pageUtils = wordsService.listPageValidWords(param);
         return R.ok().put("page", pageUtils);
     }
-
-    @GetMapping("/recite")
-    @Operation(summary = "随机取出单词")
-    public R recite(@Valid  ReciteForm form){
-        ArrayList<String> list = wordsService.randWords(form.getWords());
-        return  R.ok().put("data",list);
-    }
-
-
 }
